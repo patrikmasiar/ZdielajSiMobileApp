@@ -11,14 +11,17 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
+import { ApplicationProvider } from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 
 const App: () => React$Node = () => {
   return (
-    <>
+    <ApplicationProvider {...eva} theme={eva.dark}>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
+
       </SafeAreaView>
-    </>
+    </ApplicationProvider>
   );
 };
 
