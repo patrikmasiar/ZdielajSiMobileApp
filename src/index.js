@@ -15,16 +15,19 @@ import { ApplicationProvider, IconRegistry, } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import Application from './App';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { AppContextProvider } from './store';
 
 const App: () => React$Node = () => {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.dark}>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView style={{flex: 1, backgroundColor: "#232b43"}}>
-          <Application />
-        </SafeAreaView>
+        <AppContextProvider>
+          <StatusBar barStyle="dark-content" />
+          <SafeAreaView style={{flex: 1, backgroundColor: "#232b43"}}>
+            <Application />
+          </SafeAreaView>
+        </AppContextProvider>
       </ApplicationProvider>
     </>
   );

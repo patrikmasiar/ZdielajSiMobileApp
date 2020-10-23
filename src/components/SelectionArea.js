@@ -22,7 +22,6 @@ const SelectionArea = ({onSelectPress, selectedImages}) => {
   return (
     <View style={{flex: 1, height: 500}}>
       {selectedImages.map(((image, index) => {
-        console.log(image)
         return (
           <Image
             key={index}
