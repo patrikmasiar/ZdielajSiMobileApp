@@ -1,4 +1,4 @@
-# ZdielajSiMobileApp
+# Zdielaj.si mobile app
 Mobile application using react-native
 
 ## Run instructions for iOS:
