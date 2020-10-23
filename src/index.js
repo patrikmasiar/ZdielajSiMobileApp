@@ -13,13 +13,14 @@ import {
 } from 'react-native';
 import { ApplicationProvider } from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
+import Application from './App';
 
 const App: () => React$Node = () => {
   return (
     <ApplicationProvider {...eva} theme={eva.dark}>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-
+      <SafeAreaView style={{flex: 1}}>
+        <Application />
       </SafeAreaView>
     </ApplicationProvider>
   );
