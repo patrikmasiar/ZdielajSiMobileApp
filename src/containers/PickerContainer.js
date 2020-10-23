@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Alert} from 'react-native';
-import Main from '../components/Main';
 import SelectionArea from '../components/SelectionArea';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const PickerContainer: () => React$Node = () => {
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const handleSelectionAreaPress = () => {
     try {
@@ -15,7 +15,7 @@ const PickerContainer: () => React$Node = () => {
       }).then(media => {
         if (media) {
           //TODO
-          console.log(media)
+          setSelectedImages(media);
         } else {
           Alert.alert('Can not select images from library.', 'Please, try again.')
         }
@@ -29,6 +29,7 @@ const PickerContainer: () => React$Node = () => {
   return (
     <SelectionArea
       onSelectPress={handleSelectionAreaPress}
+      selectedImages={selectedImages}
     />
   )
 };
