@@ -1,8 +1,8 @@
 import React from 'react';
-import UploadContainer from './containers/UploadContainer';
+import Main from './components/Main';
 
 const App: () => React$Node = () => (
-  <UploadContainer />
+  <Main />
 );
 
 export default App;
