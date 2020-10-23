@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Layout, TopNavigation  } from '@ui-kitten/components';
-import SelectionArea from './SelectionArea';
 import UploadButton from './UploadButton';
+import PickerContainer from '../containers/PickerContainer';
 
 const Main = () => (
   <Layout style={style.container}>
@@ -11,7 +11,7 @@ const Main = () => (
       title='zdielaj.si'
     />
     <View style={style.body}>
-      <SelectionArea />
+      <PickerContainer />
       <View style={style.uploadButtonWrapper}>
         <UploadButton />
       </View>

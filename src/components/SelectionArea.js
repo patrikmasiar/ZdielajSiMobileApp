@@ -1,12 +1,14 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
+import PropTypes from 'prop-types'
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
-const SelectionArea = () => (
+const SelectionArea = ({onSelectPress}) => (
   <TouchableOpacity
     style={style.wrapper}
     activeOpacity={0.8}
+    onPress={onSelectPress}
   >
   </TouchableOpacity>
 );
@@ -22,5 +24,9 @@ const style = StyleSheet.create({
     borderRadius: 10,
   },
 });
+
+SelectionArea.propTypes = {
+  onSelectPress: PropTypes.func.isRequired,
+};
 
 export default SelectionArea;
