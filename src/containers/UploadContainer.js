@@ -1,7 +1,10 @@
 import React from 'react';
+import Main from '../components/Main';
 
 const UploadContainer: () => React$Node = () => {
-  return null;
+  return (
+    <Main />
+  )
 };
 
 export default UploadContainer;

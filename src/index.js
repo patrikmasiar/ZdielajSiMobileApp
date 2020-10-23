@@ -19,7 +19,7 @@ const App: () => React$Node = () => {
   return (
     <ApplicationProvider {...eva} theme={eva.dark}>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: "#232b43"}}>
         <Application />
       </SafeAreaView>
     </ApplicationProvider>
