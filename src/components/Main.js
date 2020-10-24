@@ -1,18 +1,24 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Layout, TopNavigation  } from '@ui-kitten/components';
 import UploadButton from './UploadButton';
 import PickerContainer from '../containers/PickerContainer';
 import PropTypes from 'prop-types'
 
-const Main = ({onUploadPress}) => (
+const Main = ({onUploadPress, shareUrl}) => (
   <Layout style={style.container}>
     <TopNavigation
       alignment='center'
       title='zdielaj.si'
     />
     <View style={style.body}>
-      <PickerContainer />
+      {shareUrl !== null ? (
+        <Text style={{color: '#fff'}}>
+          {shareUrl}
+        </Text>
+      ) :  (
+        <PickerContainer />
+      )}
       <View style={style.uploadButtonWrapper}>
         <UploadButton
           onPress={onUploadPress}

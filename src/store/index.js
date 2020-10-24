@@ -12,7 +12,12 @@ class AppContextProvider extends Component {
     }
   };
 
+  _setShareUrl = (shareUrl) => {
+    this.setState({shareUrl})
+  };
+
   state = {
+    shareUrl: null,
     selectedImages: [],
   };
 
@@ -21,6 +26,7 @@ class AppContextProvider extends Component {
       state: this.state,
       actions: {
         setSelectedImages: this._setSelectedImages,
+        setShareUrl: this._setShareUrl,
       },
     };
   }
