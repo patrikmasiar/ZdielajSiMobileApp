@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Alert, Clipboard} from 'react-native';
 import Main from '../components/Main';
 import { useAppContext } from '../store';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -33,8 +32,6 @@ const UploadContainer: () => React$Node = () => {
 
       if (responseData.error === null && !!responseData.data) {
         setShareUrl(`${BASE_URL}album/${responseData.data.album.id}`);
-        Clipboard.setString(`${BASE_URL}album/${responseData.data.album.id}`)
-        Alert.alert('URL COPIED!');
       }
     } catch (error) {
         console.log('Can not upload media', error);

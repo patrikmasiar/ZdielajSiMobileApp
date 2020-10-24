@@ -4,6 +4,7 @@ import { Layout, TopNavigation  } from '@ui-kitten/components';
 import PickerContainer from '../containers/PickerContainer';
 import PropTypes from 'prop-types'
 import Footer from './Footer';
+import ShareScreen from './ShareScreen';
 
 const Main: () => React$Node = ({
   onUploadPress,
@@ -18,9 +19,9 @@ const Main: () => React$Node = ({
     />
     <View style={style.body}>
       {shareUrl !== null ? (
-        <Text style={{color: '#fff'}}>
-          {shareUrl}
-        </Text>
+        <ShareScreen
+          shareUrl={shareUrl}
+        />
       ) :  (
         <PickerContainer />
       )}
@@ -28,6 +29,7 @@ const Main: () => React$Node = ({
         onUploadPress={onUploadPress}
         isLoading={isLoading}
         isUploadDisabled={isUploadDisabled}
+        shareUrl={shareUrl}
       />
     </View>
   </Layout>

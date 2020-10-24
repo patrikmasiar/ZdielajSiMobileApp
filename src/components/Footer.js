@@ -1,18 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import UploadButton from './UploadButton';
+import ShareButton from './ShareButton';
 
 const Footer: () => React$Node = ({
   onUploadPress,
   isLoading,
   isUploadDisabled,
-}) => (
-  <UploadButton
-    onPress={onUploadPress}
-    isLoading={isLoading}
-    isDisabled={isUploadDisabled}
-  />
-);
+  shareUrl,
+}) => {
+  if (shareUrl !== null) {
+    return (
+      <ShareButton
+        url={shareUrl}
+      />
+    )
+  }
+
+  return (
+    <UploadButton
+      onPress={onUploadPress}
+      isLoading={isLoading}
+      isDisabled={isUploadDisabled}
+    />
+  )
+}
+
 
 Footer.propTypes = {
   onUploadPress: PropTypes.func.isRequired,
