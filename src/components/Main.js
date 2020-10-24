@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { Layout, TopNavigation  } from '@ui-kitten/components';
+import { StyleSheet, View } from 'react-native';
+import { Layout } from '@ui-kitten/components';
 import PickerContainer from '../containers/PickerContainer';
 import PropTypes from 'prop-types'
 import Footer from './Footer';
 import ShareScreen from './ShareScreen';
+import Navigation from './Navigation';
 
 const Main: () => React$Node = ({
   onUploadPress,
@@ -13,10 +14,7 @@ const Main: () => React$Node = ({
   isUploadDisabled,
 }) => (
   <Layout style={style.container}>
-    <TopNavigation
-      alignment='center'
-      title='zdielaj.si'
-    />
+    <Navigation />
     <View style={style.body}>
       {shareUrl !== null ? (
         <ShareScreen
