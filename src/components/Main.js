@@ -12,9 +12,10 @@ const Main: () => React$Node = ({
   isLoading,
   shareUrl,
   isUploadDisabled,
+  onResetApp,
 }) => (
   <Layout style={style.container}>
-    <Navigation />
+    <Navigation shareUrl={shareUrl} onResetApp={onResetApp} />
     <View style={style.body}>
       {shareUrl !== null ? (
         <ShareScreen

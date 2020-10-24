@@ -16,6 +16,13 @@ class AppContextProvider extends Component {
     this.setState({isUploading});
   };
 
+  _resetAll = () => {
+    this.setState(() => ({
+      shareUrl: null,
+      selectedImages: [],
+    }));
+  };
+
   state = {
     shareUrl: null,
     selectedImages: [],
@@ -29,6 +36,7 @@ class AppContextProvider extends Component {
         setSelectedImages: this._setSelectedImages,
         setShareUrl: this._setShareUrl,
         setIsUploading: this._setIsUploading,
+        resetApp: this._resetAll,
       },
     };
   }

@@ -9,21 +9,21 @@ const RepeatIcon = (props) => (
   <Icon {...props} name='refresh-outline'/>
 );
 
-const renderHelpAction = () => (
-  <TopNavigationAction icon={HelpIcon}/>
-);
+const Navigation = ({shareUrl, onResetApp}) => {
+  const renderHelpAction = () => (
+    <TopNavigationAction icon={HelpIcon}/>
+  );
 
-const renderRepeatAction = () => (
-  <TopNavigationAction icon={RepeatIcon} />
-)
+  const renderRepeatAction = () => (
+    <TopNavigationAction icon={RepeatIcon} onPress={onResetApp} />
+  )
 
-const Navigation = () => {
   return (
     <TopNavigation
       alignment='center'
       title='zdielaj.si'
       accessoryLeft={renderHelpAction}
-      accessoryRight={renderRepeatAction}
+      accessoryRight={shareUrl !== null ? renderRepeatAction : () => null}
     />
   )
 }

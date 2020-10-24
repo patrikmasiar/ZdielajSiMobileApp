@@ -11,6 +11,7 @@ const UploadContainer: () => React$Node = () => {
     isUploading,
   }, actions: {
     setIsUploading,
+    resetApp,
   }} = useAppContext();
 
   const handleUploadClick = async () => {
@@ -44,6 +45,7 @@ const UploadContainer: () => React$Node = () => {
       shareUrl={shareUrl}
       isLoading={isUploading}
       isUploadDisabled={selectedImages.length === 0}
+      onResetApp={resetApp}
     />
   )
 };
