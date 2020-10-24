@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Dimensions, View, Text, Image} from 'react-native';
+import {StyleSheet, TouchableOpacity, Dimensions, View, Text} from 'react-native';
 import PropTypes from 'prop-types'
 import { Icon } from '@ui-kitten/components';
+import PreviewsList from './PreviewsList';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -25,22 +26,15 @@ const SelectionArea: () => React$Node = ({onSelectPress, selectedImages}) => {
           name='image'
         />
         <Text style={style.selectLabel}>
-          Select images
+          {hasImagesToUpload ? 'Vybrať viac obrázkov' : 'Vyber obrázky'}
         </Text>
       </TouchableOpacity>
-
-      <View>
-        {selectedImages.map(((image, index) => {
-          return (
-            <Image
-              key={index}
-              source={{uri: image.sourceURL}}
-              resizeMode='cover'
-              style={style.image}
-            />
-          )
-        }))}
-      </View>
+      
+      {hasImagesToUpload && (
+        <PreviewsList
+          data={selectedImages}
+        />
+      )}
     </View>
   )  
 };
@@ -58,17 +52,14 @@ const style = StyleSheet.create({
   },
   selectLabel: {
     color: '#8F9BB3',
-    fontSize: 18,
-    marginTop: 20,
+    fontSize: 16,
+    marginTop: 18,
   },
   icon: {
     width: 40,
     height: 40,
   },
-  image: {
-    width: WINDOW_WIDTH / 3,
-    height: WINDOW_WIDTH / 3,
-  }
+
 });
 
 SelectionArea.propTypes = {
