@@ -15,7 +15,7 @@ const Main: () => React$Node = ({
   onResetApp,
 }) => (
   <Layout style={style.container}>
-    <Navigation shareUrl={shareUrl} onResetApp={onResetApp} />
+    <Navigation canReset={shareUrl !== null} onResetApp={onResetApp} />
     <View style={style.body}>
       {shareUrl !== null ? (
         <ShareScreen

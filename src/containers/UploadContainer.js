@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Main from '../components/Main';
 import { useAppContext } from '../store';
 import RNFetchBlob from 'rn-fetch-blob';
 import {API_URL, BASE_URL} from '../env';
 
 const UploadContainer: () => React$Node = () => {
-  const [shareUrl, setShareUrl] = useState(null);
   const {state: {
     selectedImages,
     isUploading,
+    shareUrl,
   }, actions: {
     setIsUploading,
     resetApp,
+    setShareUrl,
   }} = useAppContext();
 
   const handleUploadClick = async () => {
