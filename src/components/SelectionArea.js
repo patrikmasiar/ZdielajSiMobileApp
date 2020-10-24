@@ -67,7 +67,7 @@ const style = StyleSheet.create({
   },
   image: {
     width: WINDOW_WIDTH / 3,
-    heigth: WINDOW_WIDTH / 3,
+    height: WINDOW_WIDTH / 3,
   }
 });
 
