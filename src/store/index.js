@@ -1,24 +1,25 @@
-import React, {createContext, useContext, Component} from 'react';
+import React, {createContext, Component} from 'react';
 
 const AppContext = createContext();
 
 class AppContextProvider extends Component {
 
-  _setSelectedImages = (selectedImages) => {
-    if (Array.isArray(selectedImages)) {
-      this.setState({selectedImages});
-    } else {
-      this.setState({selectedImages: []});
-    }
+  _setSelectedImages = (selectedImages: Array) => {
+    this.setState({selectedImages});
   };
 
-  _setShareUrl = (shareUrl) => {
+  _setShareUrl = (shareUrl: String) => {
     this.setState({shareUrl})
+  };
+
+  _setIsUploading = (isUploading: Boolean) => {
+    this.setState({isUploading});
   };
 
   state = {
     shareUrl: null,
     selectedImages: [],
+    isUploading: false,
   };
 
   getStore() {
@@ -27,6 +28,7 @@ class AppContextProvider extends Component {
       actions: {
         setSelectedImages: this._setSelectedImages,
         setShareUrl: this._setShareUrl,
+        setIsUploading: this._setIsUploading,
       },
     };
   }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Alert} from 'react-native';
 import SelectionArea from '../components/SelectionArea';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -28,7 +28,6 @@ const PickerContainer: () => React$Node = () => {
     } catch (error) {
       console.log(error)
     }
-    
   };
 
   return (

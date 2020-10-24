@@ -8,11 +8,15 @@ import {API_URL, BASE_URL} from '../env';
 const UploadContainer: () => React$Node = () => {
   const [shareUrl, setShareUrl] = useState(null);
   const {state: {
-    selectedImages
+    selectedImages,
+    isUploading,
+  }, actions: {
+    setIsUploading,
   }} = useAppContext();
 
   const handleUploadClick = async () => {
     try {
+      setIsUploading(true);
       const response = await RNFetchBlob.fetch('POST', `${API_URL}upload`, {
         'Content-Type' : 'multipart/form-data',
       }, [
@@ -23,6 +27,7 @@ const UploadContainer: () => React$Node = () => {
           data: RNFetchBlob.wrap(selectedImages[0].path.replace("file://", "")),
         },
       ]);
+      setIsUploading(false);
 
       const responseData = JSON.parse(response.data);
 
@@ -40,6 +45,8 @@ const UploadContainer: () => React$Node = () => {
     <Main
       onUploadPress={handleUploadClick}
       shareUrl={shareUrl}
+      isLoading={isUploading}
+      isUploadDisabled={selectedImages.length === 0}
     />
   )
 };
