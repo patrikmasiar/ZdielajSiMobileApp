@@ -16,18 +16,21 @@ const UploadContainer: () => React$Node = () => {
   }} = useAppContext();
 
   const handleUploadClick = async () => {
+    let dataArray = [];
+    for (image of selectedImages) {
+      dataArray.push({
+        name: 'images',
+        filename: image.filename,
+        type: image.mime,
+        data: RNFetchBlob.wrap(image.path.replace("file://", "")),
+      });
+    }
+
     try {
       setIsUploading(true);
       const response = await RNFetchBlob.fetch('POST', `${API_URL}upload`, {
         'Content-Type' : 'multipart/form-data',
-      }, [
-        {
-          name: `images`,
-          filename: selectedImages[0].filename,
-          type: selectedImages[0].mime,
-          data: RNFetchBlob.wrap(selectedImages[0].path.replace("file://", "")),
-        },
-      ]);
+      },dataArray);
       setIsUploading(false);
 
       const responseData = JSON.parse(response.data);
