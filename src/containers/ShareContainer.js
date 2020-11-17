@@ -13,7 +13,7 @@ const ShareContainer = () => {
         shareUrl={shareUrl}
       />
       <ShareButton
-        shareUrl={shareUrl}
+        url={shareUrl}
       />
     </View>
   )
