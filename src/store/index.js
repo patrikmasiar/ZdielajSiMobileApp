@@ -1,4 +1,5 @@
 import React, {createContext, Component} from 'react';
+import { UPLOAD_SCREEN } from '../utils/constants';
 
 const AppContext = createContext();
 
@@ -23,10 +24,21 @@ class AppContextProvider extends Component {
     }));
   };
 
+  _setActiveScreen = (screen: String) => {
+    if (screen === UPLOAD_SCREEN) {
+      this._resetAll();
+    }
+
+    this.setState(() => ({
+      activeScreen: screen,
+    }));
+  };
+
   state = {
     shareUrl: null,
     selectedImages: [],
     isUploading: false,
+    activeScreen: UPLOAD_SCREEN,
   };
 
   getStore() {
@@ -37,6 +49,7 @@ class AppContextProvider extends Component {
         setShareUrl: this._setShareUrl,
         setIsUploading: this._setIsUploading,
         resetApp: this._resetAll,
+        navigateToScreen: this._setActiveScreen,
       },
     };
   }

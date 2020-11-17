@@ -1,8 +1,8 @@
 import React from 'react';
-import UploadContainer from './containers/UploadContainer';
+import Router from './router';
 
 const App: () => React$Node = () => (
-  <UploadContainer />
+  <Router />
 );
 
 export default App;

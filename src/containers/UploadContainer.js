@@ -3,16 +3,16 @@ import Main from '../components/Main';
 import { useAppContext } from '../store';
 import RNFetchBlob from 'rn-fetch-blob';
 import {API_URL, BASE_URL} from '../env';
+import { SHARE_SCREEN } from '../utils/constants';
 
 const UploadContainer: () => React$Node = () => {
   const {state: {
     selectedImages,
     isUploading,
-    shareUrl,
   }, actions: {
     setIsUploading,
-    resetApp,
     setShareUrl,
+    navigateToScreen,
   }} = useAppContext();
 
   const handleUploadClick = async () => {
@@ -37,6 +37,7 @@ const UploadContainer: () => React$Node = () => {
 
       if (responseData.error === null && !!responseData.data) {
         setShareUrl(`${BASE_URL}album/${responseData.data.album.id}`);
+        navigateToScreen(SHARE_SCREEN);
       }
     } catch (error) {
         console.log('Can not upload media', error);
@@ -46,10 +47,8 @@ const UploadContainer: () => React$Node = () => {
   return (
     <Main
       onUploadPress={handleUploadClick}
-      shareUrl={shareUrl}
       isLoading={isUploading}
       isUploadDisabled={selectedImages.length === 0}
-      onResetApp={resetApp}
     />
   )
 };

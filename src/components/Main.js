@@ -1,43 +1,25 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Layout } from '@ui-kitten/components';
 import PickerContainer from '../containers/PickerContainer';
 import PropTypes from 'prop-types'
-import Footer from './Footer';
-import ShareScreen from './ShareScreen';
-import Navigation from './Navigation';
+import UploadButton from './UploadButton';
 
 const Main: () => React$Node = ({
   onUploadPress,
   isLoading,
-  shareUrl,
   isUploadDisabled,
-  onResetApp,
 }) => (
-  <Layout style={style.container}>
-    <Navigation canReset={shareUrl !== null} onResetApp={onResetApp} />
-    <View style={style.body}>
-      {shareUrl !== null ? (
-        <ShareScreen
-          shareUrl={shareUrl}
-        />
-      ) :  (
-        <PickerContainer />
-      )}
-      <Footer
-        onUploadPress={onUploadPress}
-        isLoading={isLoading}
-        isUploadDisabled={isUploadDisabled}
-        shareUrl={shareUrl}
-      />
-    </View>
-  </Layout>
+  <View style={style.body}>
+    <PickerContainer />
+    <UploadButton
+      onPress={onUploadPress}
+      isLoading={isLoading}
+      isDisabled={isUploadDisabled}
+    />
+  </View>
 );
 
 const style = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   body: {
     paddingVertical: 20,
     paddingHorizontal: 10,
