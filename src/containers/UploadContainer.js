@@ -4,6 +4,7 @@ import { useAppContext } from '../store';
 import RNFetchBlob from 'rn-fetch-blob';
 import {API_URL, BASE_URL} from '../env';
 import { SHARE_SCREEN } from '../utils/constants';
+import {Platform} from 'react-native';
 
 const UploadContainer: () => React$Node = () => {
   const {state: {
@@ -20,9 +21,9 @@ const UploadContainer: () => React$Node = () => {
     for (image of selectedImages) {
       dataArray.push({
         name: 'images',
-        filename: image.filename,
+        filename : image.filename,
         type: image.mime,
-        data: RNFetchBlob.wrap(image.path.replace("file://", "")),
+        data: RNFetchBlob.wrap(Platform.OS === 'android' ? image.path : image.path.replace("file://", "")),
       });
     }
 

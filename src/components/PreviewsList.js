@@ -22,8 +22,6 @@ const Item = ({item}) => (
 );
 
 const PreviewsList = ({data}) => (
-  <>
-  {console.log(data)}
   <FlatList
     data={data}
     renderItem={Item}
@@ -35,7 +33,6 @@ const PreviewsList = ({data}) => (
       width: '100%'
     }} />}
   />
-  </>
 );
 
 const style = StyleSheet.create({
