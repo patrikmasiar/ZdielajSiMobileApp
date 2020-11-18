@@ -306,12 +306,12 @@ PODS:
     - React-Core
   - RNBootSplash (2.2.8):
     - React-Core
-  - RNImageCropPicker (0.35.1):
+  - RNImageCropPicker (0.32.3):
     - React-Core
     - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.35.1)
+    - RNImageCropPicker/QBImagePickerController (= 0.32.3)
     - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.35.1):
+  - RNImageCropPicker/QBImagePickerController (0.32.3):
     - React-Core
     - React-RCTImage
     - TOCropViewController
@@ -509,7 +509,7 @@ SPEC CHECKSUMS:
   ReactCommon: 4167844018c9ed375cc01a843e9ee564399e53c3
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNBootSplash: 9e015b4ac9cbcbee4bd06e20e03b1355c5594472
-  RNImageCropPicker: 16951bc02411f50c4d197488ed6406a23dc3b5f1
+  RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
   RNPermissions: 067727df624665d4a6c8e2cffcc172ba608b96ed
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   TOCropViewController: da59f531f8ac8a94ef6d6c0fc34009350f9e8bfe

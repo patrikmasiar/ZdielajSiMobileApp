@@ -30,7 +30,7 @@ const UploadContainer: () => React$Node = () => {
       setIsUploading(true);
       const response = await RNFetchBlob.fetch('POST', `${API_URL}upload`, {
         'Content-Type' : 'multipart/form-data',
-      },dataArray);
+      }, dataArray);
       setIsUploading(false);
 
       const responseData = JSON.parse(response.data);

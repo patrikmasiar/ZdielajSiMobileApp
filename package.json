@@ -16,7 +16,7 @@
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-bootsplash": "^2.2.4",
-    "react-native-image-crop-picker": "^0.35.1",
+    "react-native-image-crop-picker": "^0.32.0",
     "react-native-permissions": "^2.2.2",
     "react-native-svg": "^12.1.0",
     "rn-fetch-blob": "^0.12.0"
