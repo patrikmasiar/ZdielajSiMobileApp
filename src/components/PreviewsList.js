@@ -1,12 +1,12 @@
 import React from 'react';
-import {FlatList, View, Image, StyleSheet} from 'react-native';
+import {FlatList, View, Image, StyleSheet, Platform} from 'react-native';
 import PropTypes from 'prop-types'
 import { Button, } from '@ui-kitten/components';
 
 const Item = ({item}) => (
   <View style={style.item}>
     <Image
-      source={{uri: item.sourceURL}}
+      source={{uri: Platform.OS === 'android' ? item.path : item.sourceURL}}
       resizeMode='cover'
       style={style.image}
     />
@@ -22,10 +22,12 @@ const Item = ({item}) => (
 );
 
 const PreviewsList = ({data}) => (
+  <>
+  {console.log(data)}
   <FlatList
     data={data}
     renderItem={Item}
-    keyExtractor={item => item.sourceURL}
+    keyExtractor={item => Platform.OS === 'android' ? item.path : item.sourceURL}
     ItemSeparatorComponent={() => <View
     style={{
       height: 1,
@@ -33,6 +35,7 @@ const PreviewsList = ({data}) => (
       width: '100%'
     }} />}
   />
+  </>
 );
 
 const style = StyleSheet.create({
