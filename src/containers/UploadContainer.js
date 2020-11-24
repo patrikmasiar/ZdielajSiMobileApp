@@ -19,9 +19,11 @@ const UploadContainer: () => React$Node = () => {
   const handleUploadClick = async () => {
     let dataArray = [];
     for (image of selectedImages) {
+      const androidFileName = Platform.OS === 'android' ? image.path.substring(image.path.lastIndexOf('/')+1) : '';
+
       dataArray.push({
         name: 'images',
-        filename : image.filename,
+        filename: Platform.OS === 'android' ? androidFileName : image.filename,
         type: image.mime,
         data: RNFetchBlob.wrap(Platform.OS === 'android' ? image.path : image.path.replace("file://", "")),
       });
