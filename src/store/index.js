@@ -37,7 +37,8 @@ class AppContextProvider extends Component {
   _removeImage = (image: Object) => {
     this.setState(prevState => {
       const selectedImages = [...prevState.selectedImages];
-      const itemIndex = selectedImages.findIndex(item => item.modificationDate === image.modificationDate);
+      const itemIndex = selectedImages
+        .findIndex(item => item.modificationDate === image.modificationDate);
 
       if (itemIndex !== -1) {
         selectedImages.splice(itemIndex, 1);

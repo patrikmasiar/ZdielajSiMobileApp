@@ -32,7 +32,18 @@ const PickerContainer: () => React$Node = () => {
   };
 
   const handleRemovePress = (image: Object) => {
-    removeImage(image);
+    Alert.alert(
+      'Vymazať obrázok z výberu?',
+      '',
+      [
+        {
+          text: "Nie",
+          style: 'cancel',
+        },
+        { text: "Áno", onPress: () => removeImage(image), style: 'destructive' }
+      ],
+      {cancelable: false}
+    );
   };
 
   return (
