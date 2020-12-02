@@ -20,7 +20,6 @@ const PickerContainer: () => React$Node = () => {
         mediaType: 'photo',
       }).then(media => {
         if (media) {
-          //TODO
           setSelectedImages(media);
         } else {
           Alert.alert('Can not select images from library.', 'Please, try again.')

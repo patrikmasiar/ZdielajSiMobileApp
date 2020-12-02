@@ -5,8 +5,20 @@ const AppContext = createContext();
 
 class AppContextProvider extends Component {
 
-  _setSelectedImages = (selectedImages: Array) => {
-    this.setState({selectedImages});
+  _setSelectedImages = (images: Array) => {
+    this.setState(prevState => {
+      const selectedImages = [...prevState.selectedImages];
+      const incomingImages = [...images];
+      const modificationDates = selectedImages.map(item => item.modificationDate);
+
+      incomingImages.forEach(item => {
+        if (!modificationDates.includes(item.modificationDate)) {
+          selectedImages.push(item);
+        }
+      });
+
+      return {selectedImages}
+    })
   };
 
   _setShareUrl = (shareUrl: String) => {
