@@ -6,7 +6,7 @@ import PreviewsList from './PreviewsList';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
-const SelectionArea: () => React$Node = ({onSelectPress, selectedImages}) => {
+const SelectionArea: () => React$Node = ({onSelectPress, selectedImages, onRemovePress}) => {
   const hasImagesToUpload = selectedImages.length !== 0;
 
   return (
@@ -33,6 +33,7 @@ const SelectionArea: () => React$Node = ({onSelectPress, selectedImages}) => {
       {hasImagesToUpload && (
         <PreviewsList
           data={selectedImages}
+          onRemovePress={onRemovePress}
         />
       )}
     </View>
@@ -63,7 +64,9 @@ const style = StyleSheet.create({
 });
 
 SelectionArea.propTypes = {
+  selectedImages: PropTypes.array.isRequired,
   onSelectPress: PropTypes.func.isRequired,
+  onRemovePress: PropTypes.func.isRequired,
 };
 
 export default SelectionArea;

@@ -9,6 +9,7 @@ const PickerContainer: () => React$Node = () => {
     selectedImages,
   }, actions: {
     setSelectedImages,
+    removeImage,
   }} = useAppContext();
 
   const handleSelectionAreaPress = () => {
@@ -30,10 +31,15 @@ const PickerContainer: () => React$Node = () => {
     }
   };
 
+  const handleRemovePress = (image: Object) => {
+    removeImage(image);
+  };
+
   return (
     <SelectionArea
       onSelectPress={handleSelectionAreaPress}
       selectedImages={selectedImages}
+      onRemovePress={handleRemovePress}
     />
   )
 };

@@ -3,7 +3,7 @@ import {FlatList, View, Image, StyleSheet, Platform} from 'react-native';
 import PropTypes from 'prop-types'
 import { Button, } from '@ui-kitten/components';
 
-const Item = ({item}) => (
+const Item = ({item, onRemovePress}) => (
   <View style={style.item}>
     <Image
       source={{uri: Platform.OS === 'android' ? item.path : item.sourceURL}}
@@ -14,17 +14,22 @@ const Item = ({item}) => (
         status='danger'
         size='tiny'
         appearance='outline'
-        onPress={() => null}
+        onPress={() => onRemovePress(item)}
       >
         Vymazať
     </Button>
   </View>
 );
 
-const PreviewsList = ({data}) => (
+const PreviewsList = ({data, onRemovePress}) => (
   <FlatList
     data={data}
-    renderItem={Item}
+    renderItem={(item) => (
+      <Item
+        item={item.item}
+        onRemovePress={onRemovePress}
+      />
+    )}
     keyExtractor={item => Platform.OS === 'android' ? item.path : item.sourceURL}
     ItemSeparatorComponent={() => <View
     style={{
@@ -51,6 +56,7 @@ const style = StyleSheet.create({
 
 PreviewsList.propTypes = {
   data: PropTypes.array.isRequired,
+  onRemovePress: PropTypes.func.isRequired,
 };
 
 export default PreviewsList;
