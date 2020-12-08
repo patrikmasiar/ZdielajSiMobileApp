@@ -38,10 +38,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  indicator: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 });
 
 UploadButton.onPress = {

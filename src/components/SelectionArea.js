@@ -14,7 +14,7 @@ const SelectionArea: () => React$Node = ({onSelectPress, selectedImages, onRemov
       <TouchableOpacity
         style={[
           style.selectionWrapper,
-          {height: hasImagesToUpload ? 120 : WINDOW_WIDTH - 20},
+          {height: hasImagesToUpload ? 110 : WINDOW_WIDTH - 20},
           hasImagesToUpload && {marginBottom: 20},
         ]}
         activeOpacity={0.8}
@@ -31,10 +31,12 @@ const SelectionArea: () => React$Node = ({onSelectPress, selectedImages, onRemov
       </TouchableOpacity>
       
       {hasImagesToUpload && (
-        <PreviewsList
-          data={selectedImages}
-          onRemovePress={onRemovePress}
-        />
+        <View style={{height: '65%'}}>
+          <PreviewsList
+            data={selectedImages}
+            onRemovePress={onRemovePress}
+          />
+        </View>
       )}
     </View>
   )  
