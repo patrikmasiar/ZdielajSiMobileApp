@@ -10,7 +10,7 @@ const SelectionArea: () => React$Node = ({onSelectPress, selectedImages, onRemov
   const hasImagesToUpload = selectedImages.length !== 0;
 
   return (
-    <View>
+    <>
       <TouchableOpacity
         style={[
           style.selectionWrapper,
@@ -31,14 +31,12 @@ const SelectionArea: () => React$Node = ({onSelectPress, selectedImages, onRemov
       </TouchableOpacity>
       
       {hasImagesToUpload && (
-        <View style={{height: '65%'}}>
-          <PreviewsList
-            data={selectedImages}
-            onRemovePress={onRemovePress}
-          />
-        </View>
+        <PreviewsList
+          data={selectedImages}
+          onRemovePress={onRemovePress}
+        />
       )}
-    </View>
+    </>
   )  
 };
 

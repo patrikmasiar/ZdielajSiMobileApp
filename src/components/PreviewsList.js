@@ -35,7 +35,7 @@ const PreviewsList = ({data, onRemovePress}) => (
     style={{
       height: 1,
       backgroundColor: '#8F9BB3',
-      width: '100%'
+      width: '100%',
     }} />}
   />
 );
