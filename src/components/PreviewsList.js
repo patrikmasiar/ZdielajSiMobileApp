@@ -6,7 +6,7 @@ import { Button, } from '@ui-kitten/components';
 const Item = ({item, onRemovePress}) => (
   <View style={style.item}>
     <Image
-      source={{uri: Platform.OS === 'android' ? item.path : item.sourceURL}}
+      source={{uri: item.path}}
       resizeMode='cover'
       style={style.image}
     />
@@ -30,7 +30,7 @@ const PreviewsList = ({data, onRemovePress}) => (
         onRemovePress={onRemovePress}
       />
     )}
-    keyExtractor={item => Platform.OS === 'android' ? item.path : item.sourceURL}
+    keyExtractor={item => item.path}
     ItemSeparatorComponent={() => <View
     style={{
       height: 1,
@@ -45,6 +45,7 @@ const style = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 5,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)'
   },
   item: {
     flexDirection: 'row',
