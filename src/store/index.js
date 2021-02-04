@@ -1,28 +1,30 @@
 import React, {createContext, Component} from 'react';
-import { UPLOAD_SCREEN } from '../utils/constants';
+import HelpModal from '../components/HelpModal';
+import {UPLOAD_SCREEN} from '../utils/constants';
 
 const AppContext = createContext();
 
 class AppContextProvider extends Component {
-
   _setSelectedImages = (images: Array) => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const selectedImages = [...prevState.selectedImages];
       const incomingImages = [...images];
-      const modificationDates = selectedImages.map(item => item.modificationDate);
+      const modificationDates = selectedImages.map(
+        (item) => item.modificationDate,
+      );
 
-      incomingImages.forEach(item => {
+      incomingImages.forEach((item) => {
         if (!modificationDates.includes(item.modificationDate)) {
           selectedImages.push(item);
         }
       });
 
-      return {selectedImages}
-    })
+      return {selectedImages};
+    });
   };
 
   _setShareUrl = (shareUrl: String) => {
-    this.setState({shareUrl})
+    this.setState({shareUrl});
   };
 
   _setIsUploading = (isUploading: Boolean) => {
@@ -47,10 +49,11 @@ class AppContextProvider extends Component {
   };
 
   _removeImage = (image: Object) => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const selectedImages = [...prevState.selectedImages];
-      const itemIndex = selectedImages
-        .findIndex(item => item.modificationDate === image.modificationDate);
+      const itemIndex = selectedImages.findIndex(
+        (item) => item.modificationDate === image.modificationDate,
+      );
 
       if (itemIndex !== -1) {
         selectedImages.splice(itemIndex, 1);
@@ -58,13 +61,22 @@ class AppContextProvider extends Component {
 
       return {selectedImages};
     });
-  }
+  };
+
+  _handleShowHelpModal = () => {
+    this.setState({isHelpModalVisible: true});
+  };
+
+  _handleHideHelpModal = () => {
+    this.setState({isHelpModalVisible: false});
+  };
 
   state = {
     shareUrl: null,
     selectedImages: [],
     isUploading: false,
     activeScreen: UPLOAD_SCREEN,
+    isHelpModalVisible: false,
   };
 
   getStore() {
@@ -77,6 +89,8 @@ class AppContextProvider extends Component {
         resetApp: this._resetAll,
         navigateToScreen: this._setActiveScreen,
         removeImage: this._removeImage,
+        showHelpModal: this._handleShowHelpModal,
+        hideHelpModal: this._handleHideHelpModal,
       },
     };
   }
@@ -85,10 +99,13 @@ class AppContextProvider extends Component {
     return (
       <AppContext.Provider value={this.getStore()}>
         {this.props.children}
+        <HelpModal
+          isVisible={this.state.isHelpModalVisible}
+          onHide={this._handleHideHelpModal}
+        />
       </AppContext.Provider>
     );
   }
-
 }
 
 export {AppContextProvider};
