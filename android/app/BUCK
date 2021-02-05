@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.zdielajsimobileapp",
+    package = "si.zdielaj",
 )
 
 android_resource(
     name = "res",
-    package = "com.zdielajsimobileapp",
+    package = "si.zdielaj",
     res = "src/main/res",
 )
 
