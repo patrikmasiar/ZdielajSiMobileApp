@@ -1,4 +1,4 @@
-package com.zdielajsimobileapp;
+package si.zdielaj;
 
 import android.os.Bundle;
 

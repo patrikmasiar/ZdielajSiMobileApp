@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.zdielajsimobileapp"
+        applicationId "si.zdielaj"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 4
