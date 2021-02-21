@@ -61,4 +61,5 @@ buck-out/
 /src/env.js
 
 /ios/ZdielajSiMobileApp/GoogleService-Info.plist
+/ios/GoogleService-Info.plist
 /android/app/google-services.json
