@@ -7,24 +7,21 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-} from 'react-native';
-import { ApplicationProvider, IconRegistry, } from '@ui-kitten/components';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import Application from './App';
-import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import { AppContextProvider } from './store';
+import {EvaIconsPack} from '@ui-kitten/eva-icons';
+import {AppContextProvider} from './store';
 
 const App: () => React$Node = () => {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.dark}>
+      <ApplicationProvider {...eva} theme={eva.light}>
         <AppContextProvider>
-          <StatusBar barStyle="dark-content" />
-          <SafeAreaView style={{flex: 1, backgroundColor: "#232b43"}}>
+          <StatusBar barStyle="light-content" />
+          <SafeAreaView style={style.safeArea}>
             <Application />
           </SafeAreaView>
         </AppContextProvider>
@@ -33,5 +30,11 @@ const App: () => React$Node = () => {
   );
 };
 
+const style = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
 
 export default App;
