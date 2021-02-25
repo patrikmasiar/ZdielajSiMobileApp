@@ -13,10 +13,12 @@ import * as eva from '@eva-design/eva';
 import Application from './App';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {AppContextProvider} from './store';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App: () => React$Node = () => {
   return (
-    <>
+    <NavigationContainer>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
         <AppContextProvider>
@@ -26,7 +28,7 @@ const App: () => React$Node = () => {
           </SafeAreaView>
         </AppContextProvider>
       </ApplicationProvider>
-    </>
+    </NavigationContainer>
   );
 };
 
