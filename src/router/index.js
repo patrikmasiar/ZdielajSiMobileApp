@@ -1,12 +1,11 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import React, {lazy, Suspense} from 'react';
+import {ActivityIndicator, StyleSheet} from 'react-native';
 import {Layout} from '@ui-kitten/components';
 import {createStackNavigator} from '@react-navigation/stack';
-
-// SCREENS
-import ShareScreen from '../screens/ShareScreen';
-import UploadScreen from '../screens/UploadScreen';
 import Navigation from '../components/Navigation';
+
+const Share = lazy(() => import('../screens/Share'));
+const Images = lazy(() => import('../screens/ImagesList'));
 
 const Stack = createStackNavigator();
 
@@ -18,18 +17,20 @@ const Router = () => {
   return (
     <Layout style={style.container}>
       <Navigation />
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Upload"
-          component={UploadScreen}
-          options={screenOptions}
-        />
-        <Stack.Screen
-          name="Share"
-          component={ShareScreen}
-          options={screenOptions}
-        />
-      </Stack.Navigator>
+      <Suspense fallback={<ActivityIndicator />}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Upload"
+            component={Images}
+            options={screenOptions}
+          />
+          <Stack.Screen
+            name="Share"
+            component={Share}
+            options={screenOptions}
+          />
+        </Stack.Navigator>
+      </Suspense>
     </Layout>
   );
 };
