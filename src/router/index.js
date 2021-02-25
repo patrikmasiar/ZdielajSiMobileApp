@@ -1,20 +1,21 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import { useAppContext } from '../store';
-import { SHARE_SCREEN, UPLOAD_SCREEN } from '../utils/constants';
-import { Layout } from '@ui-kitten/components';
+import {useAppContext} from '../store';
+import {SHARE_SCREEN, UPLOAD_SCREEN} from '../utils/constants';
+import {Layout} from '@ui-kitten/components';
 
 // SCREENS
 import ShareScreen from '../screens/ShareScreen';
 import UploadScreen from '../screens/UploadScreen';
 import Navigation from '../components/Navigation';
 
-
 const Router = () => {
-  const {state: {activeScreen}} = useAppContext();
+  const {
+    state: {activeScreen},
+  } = useAppContext();
   let bodyComponent = null;
 
-  switch(activeScreen) {
+  switch (activeScreen) {
     case UPLOAD_SCREEN:
       bodyComponent = <UploadScreen />;
       break;
@@ -34,7 +35,7 @@ const Router = () => {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 });
 
 export default Router;
