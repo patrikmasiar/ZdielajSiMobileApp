@@ -2,10 +2,13 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import AddButton from '../components/AddButton';
 import PreviewsToUpload from '../components/PreviewsToUpload';
+import PreviewsContainer from '../containers/PreviewsContainer';
 
 const ImagesList = () => (
   <View style={style.wrapper}>
-    <PreviewsToUpload data={[]} />
+    <PreviewsContainer>
+      {(params) => <PreviewsToUpload data={params.previews} />}
+    </PreviewsContainer>
     <AddButton />
   </View>
 );

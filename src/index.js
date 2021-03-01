@@ -12,7 +12,7 @@ import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import Application from './App';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
-import {AppContextProvider} from './store';
+import {AppContextProvider} from './contextStore';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 
