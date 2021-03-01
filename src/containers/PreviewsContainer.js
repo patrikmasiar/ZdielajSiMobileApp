@@ -5,8 +5,11 @@ const PreviewsContainer = ({children}) => {
     state: {previews},
   } = useAppContext();
 
+  const handleAddNewMedia = () => {};
+
   return children({
     previews,
+    onAddNew: handleAddNewMedia,
   });
 };
 

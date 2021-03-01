@@ -2,11 +2,8 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Icon} from '@ui-kitten/components';
 
-const AddButton = () => (
-  <TouchableOpacity
-    style={style.button}
-    activeOpacity={0.9}
-    onPress={() => null}>
+const AddButton = ({onPress}) => (
+  <TouchableOpacity style={style.button} activeOpacity={0.9} onPress={onPress}>
     <Icon fill="#fff" name="plus" style={style.icon} />
   </TouchableOpacity>
 );
