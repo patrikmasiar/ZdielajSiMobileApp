@@ -1,8 +1,8 @@
 import React from 'react';
 import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
 import {Alert} from 'react-native';
-import {useAppContext} from '../store';
-import {UPLOAD_SCREEN} from '../utils/constants';
+import {useAppContext} from '../../store';
+import {UPLOAD_SCREEN} from '../../utils/constants';
 
 const HelpIcon = (props) => (
   <Icon {...props} name="question-mark-circle-outline" />
