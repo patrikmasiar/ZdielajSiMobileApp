@@ -1,5 +1,5 @@
 import React, {createContext, Component} from 'react';
-import HelpModal from '../components/HelpModal';
+import HelpModal from '../components/deprecated/HelpModal';
 import {UPLOAD_SCREEN} from '../utils/constants';
 
 const AppContext = createContext();

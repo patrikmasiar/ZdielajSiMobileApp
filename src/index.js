@@ -22,7 +22,7 @@ const App: () => React$Node = () => {
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
         <AppContextProvider>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="dark-content" />
           <SafeAreaView style={style.safeArea}>
             <Application />
           </SafeAreaView>

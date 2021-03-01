@@ -7,11 +7,10 @@ const Share = lazy(() => import('../screens/Share'));
 const Images = lazy(() => import('../screens/ImagesList'));
 
 const Stack = createStackNavigator();
-
+//maison sambre
 const Router = () => {
   return (
     <Layout style={style.container}>
-      {/* <Navigation /> */}
       <Suspense fallback={<ActivityIndicator />}>
         <Stack.Navigator>
           <Stack.Screen
