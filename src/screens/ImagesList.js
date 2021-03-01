@@ -7,9 +7,13 @@ import PreviewsContainer from '../containers/PreviewsContainer';
 const ImagesList = () => (
   <View style={style.wrapper}>
     <PreviewsContainer>
-      {(params) => <PreviewsToUpload data={params.previews} />}
+      {(params) => (
+        <>
+          <PreviewsToUpload data={params.previews} />
+          <AddButton onPress={params.onAddNew} />
+        </>
+      )}
     </PreviewsContainer>
-    <AddButton />
   </View>
 );
 
