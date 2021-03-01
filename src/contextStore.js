@@ -7,11 +7,17 @@ const AppContextProvider = ({children}) => {
     previews: [],
   });
 
+  const handleSetPreviews = (media) => {
+    console.log('MEDIA::', media);
+  };
+
   return (
     <AppContext.Provider
       value={{
         state,
-        actions: {},
+        actions: {
+          setPreviews: handleSetPreviews,
+        },
       }}>
       {children}
     </AppContext.Provider>
