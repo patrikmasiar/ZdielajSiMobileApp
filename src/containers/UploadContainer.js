@@ -8,6 +8,7 @@ const UploadContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
   const {
     state: {previews},
+    actions: {resetPreviews},
   } = useAppContext();
 
   const handleUploadImages = async () => {
@@ -48,6 +49,7 @@ const UploadContainer = ({children, navigation}) => {
         navigation.navigate('share', {
           albumId: responseData.data.album.id,
         });
+        resetPreviews();
       }
     } catch (error) {
       console.log('Can not upload media', error);
