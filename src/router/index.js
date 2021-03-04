@@ -35,6 +35,7 @@ const Router = () => {
                 height: 60,
                 backgroundColor: '#f9f9f9',
               },
+              headerBackTitle: 'Späť',
             }}
           />
         </Stack.Navigator>
