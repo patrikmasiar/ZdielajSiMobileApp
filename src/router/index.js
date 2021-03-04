@@ -2,6 +2,7 @@ import React, {lazy, Suspense} from 'react';
 import {ActivityIndicator, StyleSheet, Text} from 'react-native';
 import {Layout} from '@ui-kitten/components';
 import {createStackNavigator} from '@react-navigation/stack';
+import UploadHeaderButton from '../components/UploadHeaderButton';
 
 const Share = lazy(() => import('../screens/Share'));
 const Images = lazy(() => import('../screens/ImagesList'));
@@ -16,14 +17,14 @@ const Router = () => {
           <Stack.Screen
             name="upload"
             component={Images}
-            title="Hello"
-            options={{
+            options={({navigation, route}) => ({
               title: <Text style={style.title}>Zdieľaj.si</Text>,
               headerStyle: {
                 height: 60,
                 backgroundColor: '#f9f9f9',
               },
-            }}
+              headerRight: () => <UploadHeaderButton navigation={navigation} />,
+            })}
           />
           <Stack.Screen
             name="share"
@@ -32,6 +33,7 @@ const Router = () => {
               title: <Text style={style.title}>Zdieľaj.si</Text>,
               headerStyle: {
                 height: 60,
+                backgroundColor: '#f9f9f9',
               },
             }}
           />
