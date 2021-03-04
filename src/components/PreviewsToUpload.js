@@ -22,7 +22,6 @@ const PreviewsToUpload = ({data}) => (
     style={style.list}
     renderItem={(item) => <Item item={item.item} />}
     keyExtractor={(item) => item.path}
-    ItemSeparatorComponent={() => <View style={style.separator} />}
     ListEmptyComponent={() => <EmptyPreivewsMessage />}
   />
 );
@@ -31,14 +30,9 @@ const style = StyleSheet.create({
   list: {
     padding: 15,
   },
-  separator: {
-    height: 1,
-    backgroundColor: '#fff',
-    width: '100%',
-  },
   image: {
-    width: 60,
-    height: 60,
+    width: 120,
+    height: 70,
     borderRadius: 5,
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
   },
@@ -46,7 +40,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingVertical: 10,
   },
 });
 
