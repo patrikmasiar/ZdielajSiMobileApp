@@ -21,6 +21,7 @@ const Router = () => {
               title: <Text style={style.title}>Zdieľaj.si</Text>,
               headerStyle: {
                 height: 60,
+                backgroundColor: '#f9f9f9',
               },
             }}
           />
