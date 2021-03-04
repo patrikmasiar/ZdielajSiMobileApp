@@ -3,21 +3,31 @@ import {View, StyleSheet} from 'react-native';
 import {Card, Text} from '@ui-kitten/components';
 import {BASE_URL} from '../env';
 import ShareButton from '../components/ShareButtton';
+import ShareContainer from '../containers/ShareContainer';
 
 const Share = ({route}) => (
-  <View style={style.wrapper}>
-    <Card style={style.card} status="basic">
-      <Text style={style.link}>
-        {`${BASE_URL}album/${route.params.albumId}`}
-      </Text>
-    </Card>
-    <View style={style.infoWrapper}>
-      <Text style={style.info}>
-        Link bude platný 24 hodín. Fotky budú po 24 hodinách automaticky zmazané
-      </Text>
-    </View>
-    <ShareButton />
-  </View>
+  <ShareContainer>
+    {(params) => (
+      <View style={style.wrapper}>
+        <Card style={style.card} status="basic">
+          <Text style={style.link}>
+            {`${BASE_URL}album/${route.params.albumId}`}
+          </Text>
+        </Card>
+        <View style={style.infoWrapper}>
+          <Text style={style.info}>
+            Link bude platný 24 hodín. Fotky budú po 24 hodinách automaticky
+            zmazané
+          </Text>
+        </View>
+        <ShareButton
+          onPress={() =>
+            params.onShare(`${BASE_URL}album/${route.params.albumId}`)
+          }
+        />
+      </View>
+    )}
+  </ShareContainer>
 );
 
 const style = StyleSheet.create({
