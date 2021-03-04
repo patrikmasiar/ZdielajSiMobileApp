@@ -6,11 +6,7 @@ import {Button} from '@ui-kitten/components';
 const Item = ({item, onRemovePress}) => (
   <View style={style.item}>
     <Image source={{uri: item.path}} resizeMode="cover" style={style.image} />
-    <Button
-      status="danger"
-      size="tiny"
-      appearance="outline"
-      onPress={() => null}>
+    <Button status="danger" size="" appearance="outline" onPress={() => null}>
       Vymazať
     </Button>
   </View>
