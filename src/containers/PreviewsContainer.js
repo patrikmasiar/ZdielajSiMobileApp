@@ -38,7 +38,6 @@ const PreviewsContainer = ({children}) => {
           text: 'Nie',
         },
         {text: 'Áno', onPress: () => removePreview(item)},
-        ,
       ],
       {cancelable: false},
     );
