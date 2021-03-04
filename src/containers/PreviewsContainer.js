@@ -20,8 +20,8 @@ const PreviewsContainer = ({children}) => {
         setPreviews(pickerResponse);
       } else {
         Alert.alert(
-          'Can not select images from library.',
-          'Please, try again.',
+          'Nepodarilo sa nahrať obrázky z knižnice',
+          'Prosím, skúste znovu',
         );
       }
     } catch (error) {
@@ -30,7 +30,18 @@ const PreviewsContainer = ({children}) => {
   };
 
   const handleRemoveItem = (item) => {
-    removePreview(item);
+    Alert.alert(
+      'Vymazať položku zo zoznamu?',
+      '',
+      [
+        {
+          text: 'Nie',
+        },
+        {text: 'Áno', onPress: () => removePreview(item)},
+        ,
+      ],
+      {cancelable: false},
+    );
   };
 
   return children({
