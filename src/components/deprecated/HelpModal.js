@@ -7,7 +7,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-//etsy.com
+
 const HelpModal = ({onHide, isVisible}) => {
   return (
     <Modal
