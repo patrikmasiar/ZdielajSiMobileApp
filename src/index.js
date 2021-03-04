@@ -23,9 +23,9 @@ const App: () => React$Node = () => {
       <ApplicationProvider {...eva} theme={eva.light}>
         <AppContextProvider>
           <StatusBar barStyle="dark-content" />
-          <SafeAreaView style={style.safeArea}>
-            <Application />
-          </SafeAreaView>
+          <SafeAreaView style={style.safeArea} />
+          <Application />
+          <SafeAreaView style={style.bottomSafeArea} />
         </AppContextProvider>
       </ApplicationProvider>
     </NavigationContainer>
@@ -34,7 +34,9 @@ const App: () => React$Node = () => {
 
 const style = StyleSheet.create({
   safeArea: {
-    flex: 1,
+    backgroundColor: '#f9f9f9',
+  },
+  bottomSafeArea: {
     backgroundColor: '#fff',
   },
 });
