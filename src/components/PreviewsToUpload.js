@@ -6,17 +6,23 @@ import {Button} from '@ui-kitten/components';
 const Item = ({item, onRemovePress}) => (
   <View style={style.item}>
     <Image source={{uri: item.path}} resizeMode="cover" style={style.image} />
-    <Button status="danger" size="" appearance="outline" onPress={() => null}>
+    <Button
+      status="danger"
+      size=""
+      appearance="outline"
+      onPress={() => onRemovePress(item)}>
       Vymazať
     </Button>
   </View>
 );
 
-const PreviewsToUpload = ({data}) => (
+const PreviewsToUpload = ({data, onRemoveItem}) => (
   <FlatList
     data={data}
     style={style.list}
-    renderItem={(item) => <Item item={item.item} />}
+    renderItem={(item) => (
+      <Item item={item.item} onRemovePress={onRemoveItem} />
+    )}
     keyExtractor={(item) => item.path}
     ListEmptyComponent={() => <EmptyPreivewsMessage />}
   />

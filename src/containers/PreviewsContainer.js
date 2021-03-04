@@ -5,7 +5,7 @@ import {Alert} from 'react-native';
 const PreviewsContainer = ({children}) => {
   const {
     state: {previews},
-    actions: {setPreviews},
+    actions: {setPreviews, removePreview},
   } = useAppContext();
 
   const handleAddNewMedia = async () => {
@@ -29,9 +29,14 @@ const PreviewsContainer = ({children}) => {
     }
   };
 
+  const handleRemoveItem = (item) => {
+    removePreview(item);
+  };
+
   return children({
     previews,
     onAddNew: handleAddNewMedia,
+    onRemoveItem: handleRemoveItem,
   });
 };
 
