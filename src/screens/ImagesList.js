@@ -9,7 +9,10 @@ const ImagesList = () => (
     <PreviewsContainer>
       {(params) => (
         <>
-          <PreviewsToUpload data={params.previews} />
+          <PreviewsToUpload
+            data={params.previews}
+            onRemoveItem={params.onRemoveItem}
+          />
           <AddButton onPress={params.onAddNew} />
         </>
       )}

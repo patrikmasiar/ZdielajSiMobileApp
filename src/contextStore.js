@@ -28,7 +28,30 @@ const AppContextProvider = ({children}) => {
 
       return {
         ...prevState,
-        previews: previews,
+        previews,
+      };
+    });
+  };
+
+  const handleRemovePreview = (preview) => {
+    setState((prevState) => {
+      const previews = [...prevState.previews];
+
+      if (Platform.OS === 'ios') {
+        const itemIndex = previews.findIndex(
+          (item) => item.filename === preview.filename,
+        );
+
+        if (itemIndex !== -1) {
+          previews.splice(itemIndex, 1);
+        }
+      } else {
+        // TODO: android
+      }
+
+      return {
+        ...prevState,
+        previews,
       };
     });
   };
@@ -39,6 +62,7 @@ const AppContextProvider = ({children}) => {
         state,
         actions: {
           setPreviews: handleSetPreviews,
+          removePreview: handleRemovePreview,
         },
       }}>
       {children}
