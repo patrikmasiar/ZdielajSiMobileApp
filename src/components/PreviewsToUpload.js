@@ -8,7 +8,6 @@ const Item = ({item, onRemovePress}) => (
     <Image source={{uri: item.path}} resizeMode="cover" style={style.image} />
     <Button
       status="danger"
-      size=""
       appearance="outline"
       onPress={() => onRemovePress(item)}>
       Vymazať
