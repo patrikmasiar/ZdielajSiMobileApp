@@ -56,6 +56,13 @@ const AppContextProvider = ({children}) => {
     });
   };
 
+  const handleResetPreviews = () => {
+    setState((prevState) => ({
+      ...prevState,
+      previews: [],
+    }));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -63,6 +70,7 @@ const AppContextProvider = ({children}) => {
         actions: {
           setPreviews: handleSetPreviews,
           removePreview: handleRemovePreview,
+          resetPreviews: handleResetPreviews,
         },
       }}>
       {children}
