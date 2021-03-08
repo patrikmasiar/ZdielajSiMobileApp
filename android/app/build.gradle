@@ -136,6 +136,7 @@ android {
         versionCode 7
         versionName "2.0.0"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     splits {
         abi {
