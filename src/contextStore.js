@@ -23,7 +23,21 @@ const AppContextProvider = ({children}) => {
           // else do nothing
         });
       } else {
-        //TODO: android
+        const previewsFileNames = previews.map((item) =>
+          item.path.substring(item.path.lastIndexOf('/') + 1),
+        );
+
+        media.forEach((mediumItem) => {
+          if (
+            !previewsFileNames.includes(
+              mediumItem.path.substring(mediumItem.path.lastIndexOf('/') + 1),
+            )
+          ) {
+            previews.push(mediumItem);
+          }
+
+          // else do nothing
+        });
       }
 
       return {
@@ -37,16 +51,19 @@ const AppContextProvider = ({children}) => {
     setState((prevState) => {
       const previews = [...prevState.previews];
 
-      if (Platform.OS === 'ios') {
-        const itemIndex = previews.findIndex(
-          (item) => item.filename === preview.filename,
-        );
-
-        if (itemIndex !== -1) {
-          previews.splice(itemIndex, 1);
+      const itemIndex = previews.findIndex((item) => {
+        if (Platform.OS === 'ios') {
+          return item.filename === preview.filename;
         }
-      } else {
-        // TODO: android
+
+        return (
+          item.path.substring(item.path.lastIndexOf('/') + 1) ===
+          preview.path.substring(preview.path.lastIndexOf('/') + 1)
+        );
+      });
+
+      if (itemIndex !== -1) {
+        previews.splice(itemIndex, 1);
       }
 
       return {
