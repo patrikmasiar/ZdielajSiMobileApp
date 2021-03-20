@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Card, Text} from '@ui-kitten/components';
 import {BASE_URL} from '../env';
 import ShareButton from '../components/ShareButtton';
@@ -10,9 +10,15 @@ const Share = ({route}) => (
     {(params) => (
       <View style={style.wrapper}>
         <Card style={style.card} status="basic">
-          <Text style={style.link}>
-            {`${BASE_URL}album/${route.params.albumId}`}
-          </Text>
+          <TouchableOpacity
+            onPress={() =>
+              params.onShare(`${BASE_URL}album/${route.params.albumId}`)
+            }
+            activeOpacity={0.9}>
+            <Text style={style.link}>
+              {`${BASE_URL}album/${route.params.albumId}`}
+            </Text>
+          </TouchableOpacity>
         </Card>
         <View style={style.infoWrapper}>
           <Text style={style.info}>
