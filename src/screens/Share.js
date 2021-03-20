@@ -14,6 +14,12 @@ const Share = ({route}) => (
             onPress={() =>
               params.onShare(`${BASE_URL}album/${route.params.albumId}`)
             }
+            hitSlop={{
+              top: 25,
+              right: 25,
+              bottom: 25,
+              left: 25,
+            }}
             activeOpacity={0.9}>
             <Text style={style.link}>
               {`${BASE_URL}album/${route.params.albumId}`}
