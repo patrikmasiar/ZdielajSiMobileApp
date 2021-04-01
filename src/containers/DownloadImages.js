@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import CameraRoll from '@react-native-community/cameraroll';
 import RNFetchBlob from 'rn-fetch-blob';
-import {Platform} from 'react-native';
+import {Platform, Alert} from 'react-native';
 import {downloadImages as downloadFromAPI} from '../api/Download';
 import getPermissionAndroid from '../utils/getAndroidPermissions';
 
@@ -45,8 +45,10 @@ const DownloadImages = ({children}) => {
       .fetch('GET', originalSrc)
       .then((response) => {
         CameraRoll.saveToCameraRoll(response.data, 'photo')
-          .then((res) => console.log(res))
-          .catch((err) => console.log(err));
+          .then((res) => Alert.alert('Obrázok stiahnutý'))
+          .catch((err) => {
+            // TODO
+          });
       })
       .catch((err) => console.log(err));
   };
