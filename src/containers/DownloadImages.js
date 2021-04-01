@@ -19,11 +19,16 @@ const DownloadImages = ({children}) => {
     }
   };
 
+  const downloadImage = (originalSrc: String) => {
+    console.log(originalSrc);
+  };
+
   return children({
     urlValue,
     onUrlChange: setUrlValue,
     downloadImages,
     images: imagesUrls,
+    downloadImage,
   });
 };
 
