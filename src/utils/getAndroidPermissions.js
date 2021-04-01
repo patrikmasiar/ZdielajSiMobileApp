@@ -15,6 +15,7 @@ const getPermissionAndroid = async () => {
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       return true;
     }
+
     Alert.alert(
       'Ukladanie súborov',
       'Ukladanie súborov povolené',
