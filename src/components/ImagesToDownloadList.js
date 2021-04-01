@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, StyleSheet, View, Image} from 'react-native';
-import EmptyPreivewsMessage from './EmptyPreviewsMessage';
 import {Button} from '@ui-kitten/components';
+import DownloadListEmptyMessage from './DownloadListEmptyMessage';
 
 const Item = ({item, onDownloadPress}) => (
   <View style={style.item}>
@@ -28,7 +28,7 @@ const ImagesToDownloadList = ({data, onDownloadPress}) => {
         <Item item={item.item} onDownloadPress={onDownloadPress} />
       )}
       keyExtractor={(item, index) => index.toString()}
-      ListEmptyComponent={() => <EmptyPreivewsMessage />}
+      ListEmptyComponent={() => <DownloadListEmptyMessage />}
     />
   );
 };
