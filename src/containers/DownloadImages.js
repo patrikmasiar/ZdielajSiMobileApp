@@ -6,20 +6,28 @@ import {downloadImages as downloadFromAPI} from '../api/Download';
 import getPermissionAndroid from '../utils/getAndroidPermissions';
 
 const DownloadImages = ({children}) => {
+  const [isLoading, setLoading] = useState(false);
   const [urlValue, setUrlValue] = useState('');
   const [imagesUrls, setImagesUrls] = useState([]);
 
   const downloadImages = async () => {
-    const data = await downloadFromAPI(urlValue);
+    try {
+      setLoading(true);
+      const data = await downloadFromAPI(urlValue);
 
-    if (data) {
-      const images = data.photos;
-      const formatted = images.map((image) => ({
-        thumbnail: image.thumbnail.location,
-        original: image.location,
-      }));
+      if (data) {
+        const images = data.photos;
+        const formatted = images.map((image) => ({
+          thumbnail: image.thumbnail.location,
+          original: image.location,
+        }));
 
-      setImagesUrls(formatted);
+        setImagesUrls(formatted);
+      }
+    } catch (e) {
+      // TODO
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,6 +57,7 @@ const DownloadImages = ({children}) => {
     downloadImages,
     images: imagesUrls,
     downloadImage,
+    isLoading,
   });
 };
 

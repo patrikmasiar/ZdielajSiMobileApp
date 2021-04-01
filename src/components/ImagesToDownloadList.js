@@ -1,5 +1,11 @@
 import React from 'react';
-import {FlatList, StyleSheet, View, Image} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import {Button} from '@ui-kitten/components';
 import DownloadListEmptyMessage from './DownloadListEmptyMessage';
 
@@ -19,7 +25,11 @@ const Item = ({item, onDownloadPress}) => (
   </View>
 );
 
-const ImagesToDownloadList = ({data, onDownloadPress}) => {
+const ImagesToDownloadList = ({data, onDownloadPress, isLoading}) => {
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
   return (
     <FlatList
       data={data}
