@@ -26,7 +26,7 @@ const DownloadImages = () => {
             <>
               <Input
                 value={params.urlValue}
-                label="Album URL adresa"
+                label="URL adresa albumu"
                 placeholder="https://zdielaj.si/album/...."
                 accessoryRight={renderIcon}
                 autoCapitalize="none"
