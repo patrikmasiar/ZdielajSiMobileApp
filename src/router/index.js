@@ -3,9 +3,11 @@ import {ActivityIndicator, StyleSheet, Text} from 'react-native';
 import {Layout} from '@ui-kitten/components';
 import {createStackNavigator} from '@react-navigation/stack';
 import UploadHeaderButton from '../components/UploadHeaderButton';
+import ImagesHeaderButton from '../components/ImagesHeaderButton';
 
 const Share = lazy(() => import('../screens/Share'));
 const Images = lazy(() => import('../screens/ImagesList'));
+const DownloadImages = lazy(() => import('../screens/DownloadImages'));
 
 const Stack = createStackNavigator();
 
@@ -24,6 +26,7 @@ const Router = () => {
                 backgroundColor: '#f9f9f9',
               },
               headerRight: () => <UploadHeaderButton navigation={navigation} />,
+              headerLeft: () => <ImagesHeaderButton navigation={navigation} />,
             })}
           />
           <Stack.Screen
@@ -31,6 +34,18 @@ const Router = () => {
             component={Share}
             options={{
               title: <Text style={style.title}>Zdieľaj.si</Text>,
+              headerStyle: {
+                height: 60,
+                backgroundColor: '#f9f9f9',
+              },
+              headerBackTitle: 'Späť',
+            }}
+          />
+          <Stack.Screen
+            name="download"
+            component={DownloadImages}
+            options={{
+              title: <Text style={style.title}>Sťahuj.si</Text>,
               headerStyle: {
                 height: 60,
                 backgroundColor: '#f9f9f9',
