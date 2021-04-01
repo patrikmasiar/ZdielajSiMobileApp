@@ -35,6 +35,7 @@ const DownloadImages = () => {
               <ImagesToDownloadList
                 data={params.images}
                 onDownloadPress={params.downloadImage}
+                isLoading={params.isLoading}
               />
             </>
           );
