@@ -1,22 +1,17 @@
+import {API_URL} from '../env';
+
 export const downloadImages = async (url: String) => {
   try {
-    const response = await fetch(url);
+    const regex = /([a-z\d]+)(\/*|)$/i;
+    const albumId = url.match(regex)[0];
 
-    console.log(response);
-    // const response = await RNFetchBlob.fetch(
-    //   'POST',
-    //   `${API_URL}upload`,
-    //   {
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    //   data,
-    // );
+    const response = await fetch(`${API_URL}album/${albumId}`);
 
-    // const responseData = JSON.parse(response.data);
+    const result = await response.json();
 
-    // if (responseData.error === null && !!responseData.data) {
-    //   return responseData.data;
-    // }
+    if (result && result.error === null) {
+      return result.data;
+    }
   } catch (error) {
     console.log('Can download media', error);
     return null;
