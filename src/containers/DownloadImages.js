@@ -47,7 +47,8 @@ const DownloadImages = ({children}) => {
         CameraRoll.saveToCameraRoll(response.data, 'photo')
           .then((res) => Alert.alert('Obrázok stiahnutý'))
           .catch((err) => {
-            // TODO
+            console.log(err);
+            Alert.alert('Obrázok sa nepodarilo uložiť');
           });
       })
       .catch((err) => console.log(err));
