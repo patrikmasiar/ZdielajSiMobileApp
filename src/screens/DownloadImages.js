@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import {Icon, Input} from '@ui-kitten/components';
 import DownloadImagesContainer from '../containers/DownloadImages';
+import ImagesToDownloadList from '../components/ImagesToDownloadList';
 
 const DownloadImages = () => {
   return (
@@ -30,6 +31,10 @@ const DownloadImages = () => {
                 accessoryRight={renderIcon}
                 autoCapitalize="none"
                 onChangeText={(nextValue) => params.onUrlChange(nextValue)}
+              />
+              <ImagesToDownloadList
+                data={params.images}
+                onDownloadPress={params.downloadImage}
               />
             </>
           );
