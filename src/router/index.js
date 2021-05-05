@@ -2,8 +2,10 @@ import React, {lazy, Suspense} from 'react';
 import {ActivityIndicator, StyleSheet, Text} from 'react-native';
 import {Layout} from '@ui-kitten/components';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import UploadHeaderButton from '../components/UploadHeaderButton';
 import ImagesHeaderButton from '../components/ImagesHeaderButton';
+import {Icon} from '@ui-kitten/components';
 
 const Share = lazy(() => import('../screens/Share'));
 const Images = lazy(() => import('../screens/ImagesList'));
@@ -11,7 +13,7 @@ const DownloadImages = lazy(() => import('../screens/DownloadImages'));
 
 const Stack = createStackNavigator();
 
-const Router = () => {
+const StackNavigation = () => {
   return (
     <Layout style={style.container}>
       <Suspense fallback={<ActivityIndicator />}>
@@ -56,6 +58,46 @@ const Router = () => {
         </Stack.Navigator>
       </Suspense>
     </Layout>
+  );
+};
+
+const Tab = createBottomTabNavigator();
+
+import Profile from '../screens/Profile';
+
+const Router = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          switch (route.name) {
+            case 'Share':
+              iconName = 'share';
+              break;
+            case 'Profile':
+              iconName = 'person-outline';
+              break;
+          }
+
+          return (
+            <Icon
+              fill={color}
+              name={iconName}
+              style={{width: 25, height: 25}}
+            />
+          );
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: '#3255AF',
+        inactiveTintColor: 'gray',
+        showLabel: false,
+      }}>
+      <Tab.Screen name="Share" title="" component={StackNavigation} />
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
   );
 };
 
