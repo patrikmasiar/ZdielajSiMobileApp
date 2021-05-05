@@ -17,6 +17,7 @@
     "@react-native-firebase/app": "^10.8.1",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
+    "@sentry/react-native": "^2.4.2",
     "@ui-kitten/components": "^5.1.0",
     "@ui-kitten/eva-icons": "^5.1.0",
     "react": "16.13.1",
