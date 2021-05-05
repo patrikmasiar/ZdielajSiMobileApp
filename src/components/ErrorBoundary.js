@@ -14,7 +14,7 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <View style={style.wrapper}>
-          <Text style={style.title}>Something went wrong</Text>
+          <Text style={style.title}>Niečo sa pokazilo</Text>
         </View>
       );
     }
