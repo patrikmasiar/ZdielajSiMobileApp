@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useAppContext} from '../contextStore';
 import RNFetchBlob from 'rn-fetch-blob';
-import {Platform} from 'react-native';
+import {Alert, Platform} from 'react-native';
 import {API_URL} from '../env';
 
 const UploadContainer = ({children, navigation}) => {
@@ -15,6 +15,14 @@ const UploadContainer = ({children, navigation}) => {
     try {
       setLoading(true);
       let dataArray = [];
+
+      if (previews.length > 10) {
+        Alert.alert(
+          'Nemožno nahrať viac ako 10 médií',
+          'Vyžaduje sa prihlásenie',
+        );
+        return;
+      }
 
       for (const image of previews) {
         const fileNameByPlatform =
