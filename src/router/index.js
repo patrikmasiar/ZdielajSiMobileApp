@@ -95,10 +95,10 @@ const UserRouter = () => {
       <Suspense fallback={<ActivityIndicator />}>
         <Stack.Navigator>
           <Stack.Screen
-            name="registration"
-            component={Register}
+            name="login"
+            component={Login}
             options={({navigation, route}) => ({
-              title: <Text style={style.title}>Registruj.sa</Text>,
+              title: <Text style={style.title}>Prihlás.sa</Text>,
               headerStyle: {
                 height: 60,
                 backgroundColor: '#f9f9f9',
@@ -106,10 +106,10 @@ const UserRouter = () => {
             })}
           />
           <Stack.Screen
-            name="login"
-            component={Login}
+            name="registration"
+            component={Register}
             options={({navigation, route}) => ({
-              title: <Text style={style.title}>Prihlás.sa</Text>,
+              title: <Text style={style.title}>Registruj.sa</Text>,
               headerStyle: {
                 height: 60,
                 backgroundColor: '#f9f9f9',
