@@ -10,10 +10,14 @@ import {Icon} from '@ui-kitten/components';
 const Share = lazy(() => import('../screens/Share'));
 const Images = lazy(() => import('../screens/ImagesList'));
 const DownloadImages = lazy(() => import('../screens/DownloadImages'));
+const Register = lazy(() => import('../screens/Register'));
+const Login = lazy(() => import('../screens/Login'));
+const Profile = lazy(() => import('../screens/Profile'));
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-const StackNavigation = () => {
+const ShareRouter = () => {
   return (
     <Layout style={style.container}>
       <Suspense fallback={<ActivityIndicator />}>
@@ -61,9 +65,62 @@ const StackNavigation = () => {
   );
 };
 
-const Tab = createBottomTabNavigator();
+const UserRouter = () => {
+  const isUserLogged = false; // TODO
 
-import Profile from '../screens/Profile';
+  if (isUserLogged) {
+    return (
+      <Layout style={style.container}>
+        <Suspense fallback={<ActivityIndicator />}>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="profile"
+              component={Profile}
+              options={({navigation, route}) => ({
+                title: <Text style={style.title}>Profil</Text>,
+                headerStyle: {
+                  height: 60,
+                  backgroundColor: '#f9f9f9',
+                },
+              })}
+            />
+          </Stack.Navigator>
+        </Suspense>
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout style={style.container}>
+      <Suspense fallback={<ActivityIndicator />}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="registration"
+            component={Register}
+            options={({navigation, route}) => ({
+              title: <Text style={style.title}>Registruj.sa</Text>,
+              headerStyle: {
+                height: 60,
+                backgroundColor: '#f9f9f9',
+              },
+            })}
+          />
+          <Stack.Screen
+            name="login"
+            component={Login}
+            options={({navigation, route}) => ({
+              title: <Text style={style.title}>Prihlás.sa</Text>,
+              headerStyle: {
+                height: 60,
+                backgroundColor: '#f9f9f9',
+              },
+            })}
+          />
+        </Stack.Navigator>
+      </Suspense>
+    </Layout>
+  );
+};
 
 const Router = () => {
   return (
@@ -95,8 +152,8 @@ const Router = () => {
         inactiveTintColor: 'gray',
         showLabel: false,
       }}>
-      <Tab.Screen name="Share" title="" component={StackNavigation} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Share" component={ShareRouter} />
+      <Tab.Screen name="Profile" component={UserRouter} />
     </Tab.Navigator>
   );
 };
