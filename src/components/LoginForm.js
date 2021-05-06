@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Input, Button} from '@ui-kitten/components';
 
-const LoginForm = () => {
+const LoginForm = ({onSubmit, onGoToRegister}) => {
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
@@ -32,13 +32,16 @@ const LoginForm = () => {
         autoCorrect={false}
         returnKeyType="send"
       />
-      <Button style={style.loginButton} onPress={() => null}>
+      <Button
+        style={style.loginButton}
+        disabled={emailValue.length < 5 || passwordValue.length < 7}
+        onPress={() => onSubmit(emailValue, passwordValue)}>
         Prihlásiť sa
       </Button>
       <Button
         appearance="ghost"
         style={style.registerButton}
-        onPress={() => null}>
+        onPress={onGoToRegister}>
         Vytvoriť účet
       </Button>
     </View>
