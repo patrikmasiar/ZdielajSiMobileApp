@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import LoginForm from '../components/LoginForm';
 import LoginContainer from '../containers/Login';
 
 const Login = ({navigation}) => {
   return (
-    <View style={style.wrapper}>
+    <ScrollView style={style.wrapper} keyboardDismissMode="interactive">
       <LoginContainer navigation={navigation}>
         {(params) => (
           <LoginForm
@@ -14,7 +14,7 @@ const Login = ({navigation}) => {
           />
         )}
       </LoginContainer>
-    </View>
+    </ScrollView>
   );
 };
 
