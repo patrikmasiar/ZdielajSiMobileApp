@@ -1,5 +1,7 @@
-const LoginContainer = ({children}) => {
-  const handleGoToRegister = () => {};
+const LoginContainer = ({children, navigation}) => {
+  const handleGoToRegister = () => {
+    navigation.navigate('registration');
+  };
 
   const handleLogin = () => {};
 

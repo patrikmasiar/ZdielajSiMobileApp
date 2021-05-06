@@ -3,10 +3,10 @@ import {View, StyleSheet} from 'react-native';
 import LoginForm from '../components/LoginForm';
 import LoginContainer from '../containers/Login';
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <View style={style.wrapper}>
-      <LoginContainer>
+      <LoginContainer navigation={navigation}>
         {(params) => (
           <LoginForm
             onSubmit={params.login}
