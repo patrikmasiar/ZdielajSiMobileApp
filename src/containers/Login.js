@@ -3,7 +3,7 @@ const LoginContainer = ({children, navigation}) => {
     navigation.navigate('registration');
   };
 
-  const handleLogin = () => {};
+  const handleLogin = (name, email) => {};
 
   return children({
     goToRegister: handleGoToRegister,
