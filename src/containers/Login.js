@@ -1,5 +1,12 @@
 const LoginContainer = ({children}) => {
-  return children({});
+  const handleGoToRegister = () => {};
+
+  const handleLogin = () => {};
+
+  return children({
+    goToRegister: handleGoToRegister,
+    login: handleLogin,
+  });
 };
 
 export default LoginContainer;

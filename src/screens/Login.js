@@ -6,7 +6,14 @@ import LoginContainer from '../containers/Login';
 const Login = () => {
   return (
     <View style={style.wrapper}>
-      <LoginContainer>{(params) => <LoginForm />}</LoginContainer>
+      <LoginContainer>
+        {(params) => (
+          <LoginForm
+            onSubmit={params.login}
+            onGoToRegister={params.goToRegister}
+          />
+        )}
+      </LoginContainer>
     </View>
   );
 };
