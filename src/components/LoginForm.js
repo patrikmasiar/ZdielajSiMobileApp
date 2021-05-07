@@ -15,7 +15,7 @@ const LoginForm = ({onSubmit, onGoToRegister}) => {
         label="E-mail"
         value={emailValue}
         onChangeText={setEmailValue}
-        autoCapitalize={false}
+        autoCapitalize="none"
         autoCorrect={false}
         keyboardType="email-address"
         returnKeyType="next"
@@ -28,7 +28,7 @@ const LoginForm = ({onSubmit, onGoToRegister}) => {
         secureTextEntry={true}
         value={passwordValue}
         onChangeText={setPasswordValue}
-        autoCapitalize={false}
+        autoCapitalize="none"
         autoCorrect={false}
         returnKeyType="send"
       />

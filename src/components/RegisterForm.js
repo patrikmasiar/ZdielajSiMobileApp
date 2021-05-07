@@ -27,7 +27,7 @@ const RegisterForm = ({onSubmit}) => {
         label="E-mail"
         value={emailValue}
         onChangeText={setEmailValue}
-        autoCapitalize={false}
+        autoCapitalize="none"
         autoCorrect={false}
         keyboardType="email-address"
         returnKeyType="next"
@@ -41,7 +41,7 @@ const RegisterForm = ({onSubmit}) => {
         secureTextEntry={true}
         value={passwordValue}
         onChangeText={setPasswordValue}
-        autoCapitalize={false}
+        autoCapitalize="none"
         autoCorrect={false}
         returnKeyType="send"
       />
@@ -52,7 +52,7 @@ const RegisterForm = ({onSubmit}) => {
           emailValue.length < 5 ||
           passwordValue.length < 7
         }
-        onPress={() => onSubmit(emailValue, passwordValue)}>
+        onPress={() => onSubmit(nameValue, emailValue, passwordValue)}>
         Registrovať sa
       </Button>
     </ScrollView>
