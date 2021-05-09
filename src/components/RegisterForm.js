@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import {Input, Button} from '@ui-kitten/components';
 
-const RegisterForm = ({onSubmit}) => {
+const RegisterForm = ({onSubmit, isLoading}) => {
   const [nameValue, setNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
@@ -18,6 +18,7 @@ const RegisterForm = ({onSubmit}) => {
         onChangeText={setNameValue}
         returnKeyType="next"
         caption="Postačuje zadať iba meno bez priezviska."
+        disabled={isLoading}
       />
       <Input
         style={style.input}
@@ -31,6 +32,7 @@ const RegisterForm = ({onSubmit}) => {
         keyboardType="email-address"
         returnKeyType="next"
         caption="Tvoja e-mailová adresa nebude s nikým zdieľaná ani využívaná na marketingové účely."
+        disabled={isLoading}
       />
       <Input
         style={style.input}
@@ -43,16 +45,18 @@ const RegisterForm = ({onSubmit}) => {
         autoCapitalize="none"
         autoCorrect={false}
         returnKeyType="send"
+        disabled={isLoading}
       />
       <Button
         style={style.loginButton}
         disabled={
           nameValue.length < 2 ||
           emailValue.length < 5 ||
-          passwordValue.length < 7
+          passwordValue.length < 7 ||
+          isLoading
         }
         onPress={() => onSubmit(nameValue, emailValue, passwordValue)}>
-        Registrovať sa
+        {isLoading ? 'Registrujem ...' : 'Registrovať sa'}
       </Button>
     </ScrollView>
   );

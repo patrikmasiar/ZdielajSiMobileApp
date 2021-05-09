@@ -7,7 +7,12 @@ const Register = () => {
   return (
     <View style={style.wrapper}>
       <RegisterContainer>
-        {(params) => <RegisterForm onSubmit={params.register} />}
+        {(params) => (
+          <RegisterForm
+            onSubmit={params.register}
+            isLoading={params.isLoading}
+          />
+        )}
       </RegisterContainer>
     </View>
   );
