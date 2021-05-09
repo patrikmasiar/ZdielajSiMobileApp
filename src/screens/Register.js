@@ -3,10 +3,10 @@ import {View, StyleSheet} from 'react-native';
 import RegisterForm from '../components/RegisterForm';
 import RegisterContainer from '../containers/Register';
 
-const Register = () => {
+const Register = ({navigation}) => {
   return (
     <View style={style.wrapper}>
-      <RegisterContainer>
+      <RegisterContainer navigation={navigation}>
         {(params) => (
           <RegisterForm
             onSubmit={params.register}

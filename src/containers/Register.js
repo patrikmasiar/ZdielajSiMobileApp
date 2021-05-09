@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {register} from '../api/User';
 
-const RegisterContainer = ({children}) => {
+const RegisterContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
 
   const handleRegister = async (name, email, password) => {
@@ -9,7 +9,9 @@ const RegisterContainer = ({children}) => {
       setLoading(true);
       const response = await register(name, email, password);
 
-      console.log('RESPONSE::', response);
+      if (response && !!response.data.user.id) {
+        navigation.navigate('login');
+      }
     } catch (e) {
       console.log('Error register user:', e);
     } finally {
