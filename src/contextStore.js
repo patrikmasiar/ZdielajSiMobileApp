@@ -6,6 +6,7 @@ const AppContext = createContext({});
 const AppContextProvider = ({children}) => {
   const [state, setState] = useState({
     previews: [],
+    userToken: null,
   });
 
   const handleSetPreviews = (media) => {
@@ -80,6 +81,13 @@ const AppContextProvider = ({children}) => {
     }));
   };
 
+  const setUserToken = (token) => {
+    setState((prevState) => ({
+      ...prevState,
+      userToken: token,
+    }));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -88,6 +96,7 @@ const AppContextProvider = ({children}) => {
           setPreviews: handleSetPreviews,
           removePreview: handleRemovePreview,
           resetPreviews: handleResetPreviews,
+          setUserToken: setUserToken,
         },
       }}>
       {children}

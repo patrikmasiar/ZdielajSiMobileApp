@@ -77,7 +77,7 @@ const UserRouter = () => {
               name="profile"
               component={Profile}
               options={({navigation, route}) => ({
-                title: <Text style={style.title}>Profil</Text>,
+                title: <Text style={style.title}>Profile</Text>,
                 headerStyle: {
                   height: 60,
                   backgroundColor: '#f9f9f9',
