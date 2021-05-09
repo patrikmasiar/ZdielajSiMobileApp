@@ -40,6 +40,8 @@ export const register = async (name, email, password) => {
 
     const result = await response.json();
 
+    console.log('register result', result);
+
     if (result) {
       return result;
     }
