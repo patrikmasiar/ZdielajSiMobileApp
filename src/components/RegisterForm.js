@@ -16,7 +16,6 @@ const RegisterForm = ({onSubmit}) => {
         label="Meno"
         value={nameValue}
         onChangeText={setNameValue}
-        autoCapitalize={true}
         returnKeyType="next"
         caption="Postačuje zadať iba meno bez priezviska."
       />
