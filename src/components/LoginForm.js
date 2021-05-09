@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Input, Button} from '@ui-kitten/components';
 
-const LoginForm = ({onSubmit, onGoToRegister}) => {
+const LoginForm = ({onSubmit, onGoToRegister, isLoading}) => {
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
@@ -19,6 +19,7 @@ const LoginForm = ({onSubmit, onGoToRegister}) => {
         autoCorrect={false}
         keyboardType="email-address"
         returnKeyType="next"
+        disabled={isLoading}
       />
       <Input
         style={style.input}
@@ -31,12 +32,15 @@ const LoginForm = ({onSubmit, onGoToRegister}) => {
         autoCapitalize="none"
         autoCorrect={false}
         returnKeyType="send"
+        disabled={isLoading}
       />
       <Button
         style={style.loginButton}
-        disabled={emailValue.length < 5 || passwordValue.length < 7}
+        disabled={
+          emailValue.length < 5 || passwordValue.length < 7 || isLoading
+        }
         onPress={() => onSubmit(emailValue, passwordValue)}>
-        Prihlásiť sa
+        {isLoading ? 'Prihlasujem ...' : 'Prihlásiť sa'}
       </Button>
       <Button
         appearance="ghost"

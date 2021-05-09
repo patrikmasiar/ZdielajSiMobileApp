@@ -11,6 +11,7 @@ const Login = ({navigation}) => {
           <LoginForm
             onSubmit={params.login}
             onGoToRegister={params.goToRegister}
+            isLoading={params.isLoading}
           />
         )}
       </LoginContainer>
