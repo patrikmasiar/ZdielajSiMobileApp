@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const UserToken = {
   get: async () => {
     try {
-      const userToken = await AsyncStorage.getItem('stored_location_data');
+      const userToken = await AsyncStorage.getItem('user_token');
 
       return userToken;
     } catch (e) {

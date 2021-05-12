@@ -1,5 +1,6 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 import {Platform} from 'react-native';
+import UserToken from './utils/UserToken';
 
 const AppContext = createContext({});
 
@@ -7,7 +8,22 @@ const AppContextProvider = ({children}) => {
   const [state, setState] = useState({
     previews: [],
     userToken: null,
+    userLoading: null,
   });
+
+  useEffect(() => {
+    setStoredUserToken();
+  }, []);
+
+  const setStoredUserToken = async () => {
+    setState((prevState) => ({...prevState, userLoading: true}));
+    const token = await UserToken.get();
+    setState((prevState) => ({...prevState, userLoading: false}));
+
+    if (token) {
+      setUserToken(token);
+    }
+  };
 
   const handleSetPreviews = (media) => {
     setState((prevState) => {
@@ -82,6 +98,7 @@ const AppContextProvider = ({children}) => {
   };
 
   const setUserToken = (token) => {
+    UserToken.set(token);
     setState((prevState) => ({
       ...prevState,
       userToken: token,
@@ -89,6 +106,7 @@ const AppContextProvider = ({children}) => {
   };
 
   const resetUserToken = () => {
+    UserToken.remove();
     setState((prevState) => ({
       ...prevState,
       userToken: null,
