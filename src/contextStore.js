@@ -88,6 +88,13 @@ const AppContextProvider = ({children}) => {
     }));
   };
 
+  const resetUserToken = () => {
+    setState((prevState) => ({
+      ...prevState,
+      userToken: null,
+    }));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -97,6 +104,7 @@ const AppContextProvider = ({children}) => {
           removePreview: handleRemovePreview,
           resetPreviews: handleResetPreviews,
           setUserToken: setUserToken,
+          resetUserToken: resetUserToken,
         },
       }}>
       {children}
