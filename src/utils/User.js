@@ -19,7 +19,7 @@ const User = {
   },
   remove: async () => {
     try {
-      await AsyncStorage.setItem('user_info', null);
+      await AsyncStorage.setItem('user_info', JSON.stringify(null));
     } catch (e) {
       console.error(e);
     }

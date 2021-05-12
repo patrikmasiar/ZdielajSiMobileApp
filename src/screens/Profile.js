@@ -3,14 +3,14 @@ import {View, StyleSheet, Text} from 'react-native';
 import ProfileContainer from '../containers/ProfileContainer';
 import {Button} from '@ui-kitten/components';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
   return (
-    <ProfileContainer>
+    <ProfileContainer navigation={navigation}>
       {(params) => (
         <View style={style.wrapper}>
           <View style={style.head}>
             <Text style={style.title} numberOfLines={2}>
-              Vitaj {params.user.name}
+              Vitaj {params?.user?.name ?? ''}
             </Text>
             <Button
               status="danger"

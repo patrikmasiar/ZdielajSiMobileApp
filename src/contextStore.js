@@ -105,11 +105,14 @@ const AppContextProvider = ({children}) => {
     }));
   };
 
-  const resetUser = () => {
-    User.remove();
+  const resetUser = async () => {
+    setState((prevState) => ({...prevState, userLoading: true}));
+    await User.remove();
+    setState((prevState) => ({...prevState, userLoading: false}));
+
     setState((prevState) => ({
       ...prevState,
-      userToken: null,
+      user: null,
     }));
   };
 
