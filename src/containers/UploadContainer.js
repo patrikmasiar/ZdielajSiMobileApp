@@ -7,7 +7,7 @@ import {API_URL} from '../env';
 const UploadContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
   const {
-    state: {previews},
+    state: {previews, user},
     actions: {resetPreviews},
   } = useAppContext();
 
@@ -15,8 +15,12 @@ const UploadContainer = ({children, navigation}) => {
     try {
       setLoading(true);
       let dataArray = [];
+      let headers = {
+        'Content-Type': 'multipart/form-data',
+      };
+      const userToken = user?.token ?? null;
 
-      if (previews.length > 10) {
+      if (previews.length > 10 && userToken === null) {
         Alert.alert(
           'Nemožno nahrať viac ako 10 médií',
           'Vyžaduje sa prihlásenie',
@@ -42,12 +46,14 @@ const UploadContainer = ({children, navigation}) => {
         });
       }
 
+      if (userToken) {
+        headers.Authorization = user.token;
+      }
+
       const response = await RNFetchBlob.fetch(
         'POST',
         `${API_URL}upload`,
-        {
-          'Content-Type': 'multipart/form-data',
-        },
+        {...headers},
         dataArray,
       );
 
