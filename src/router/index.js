@@ -6,6 +6,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import UploadHeaderButton from '../components/UploadHeaderButton';
 import ImagesHeaderButton from '../components/ImagesHeaderButton';
 import {Icon} from '@ui-kitten/components';
+import {useAppContext} from '../contextStore';
 
 const Share = lazy(() => import('../screens/Share'));
 const Images = lazy(() => import('../screens/ImagesList'));
@@ -66,7 +67,10 @@ const ShareRouter = () => {
 };
 
 const UserRouter = () => {
-  const isUserLogged = false; // TODO
+  const {
+    state: {userToken, isLoading},
+  } = useAppContext();
+  const isUserLogged = !isLoading && userToken !== null;
 
   if (isUserLogged) {
     return (
