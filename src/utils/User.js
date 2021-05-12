@@ -1,29 +1,29 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const UserToken = {
+const User = {
   get: async () => {
     try {
-      const userToken = await AsyncStorage.getItem('user_token');
+      const userToken = await AsyncStorage.getItem('user_info');
 
       return userToken;
     } catch (e) {
       console.error(e);
     }
   },
-  set: async (token) => {
+  set: async (user) => {
     try {
-      await AsyncStorage.setItem('user_token', token);
+      await AsyncStorage.setItem('user_info', JSON.stringify(user));
     } catch (e) {
       console.error(e);
     }
   },
   remove: async () => {
     try {
-      await AsyncStorage.setItem('user_token', null);
+      await AsyncStorage.setItem('user_info', null);
     } catch (e) {
       console.error(e);
     }
   },
 };
 
-export default UserToken;
+export default User;

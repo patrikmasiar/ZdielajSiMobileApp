@@ -68,9 +68,9 @@ const ShareRouter = () => {
 
 const UserRouter = () => {
   const {
-    state: {userToken, isLoading},
+    state: {user, isLoading},
   } = useAppContext();
-  const isUserLogged = !isLoading && userToken !== null;
+  const isUserLogged = !isLoading && !!user?.token;
 
   if (isUserLogged) {
     return (
