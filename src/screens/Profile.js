@@ -1,13 +1,24 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import ProfileContainer from '../containers/ProfileContainer';
+import {Button} from '@ui-kitten/components';
 
 const Profile = () => {
   return (
     <ProfileContainer>
       {(params) => (
         <View style={style.wrapper}>
-          <Text style={style.text}>Vitaj {params.user.name}</Text>
+          <View style={style.head}>
+            <Text style={style.title} numberOfLines={2}>
+              Vitaj {params.user.name}
+            </Text>
+            <Button
+              status="danger"
+              appearance="outline"
+              onPress={params.logout}>
+              Odhlásiť sa
+            </Button>
+          </View>
         </View>
       )}
     </ProfileContainer>
@@ -20,12 +31,21 @@ const style = StyleSheet.create({
     flex: 1,
     position: 'relative',
     padding: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
   },
-  text: {
+  head: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  title: {
     fontWeight: 'bold',
-    color: 'gray',
+    color: '#3255AF',
+    fontSize: 30,
+    flex: 1,
   },
 });
 
