@@ -5,7 +5,7 @@ import {useAppContext} from '../contextStore';
 const LoginContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
   const {
-    actions: {setUserToken},
+    actions: {setUser},
   } = useAppContext();
 
   const handleGoToRegister = () => {
@@ -18,7 +18,7 @@ const LoginContainer = ({children, navigation}) => {
       const response = await login(email, password);
 
       if (response && !!response.data.user.id) {
-        setUserToken(response.data.user.token);
+        setUser(response.data.user);
       }
     } catch (e) {
       console.log('Error login user:', e);

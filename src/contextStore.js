@@ -1,13 +1,13 @@
 import React, {createContext, useState, useEffect} from 'react';
 import {Platform} from 'react-native';
-import UserToken from './utils/UserToken';
+import User from './utils/User';
 
 const AppContext = createContext({});
 
 const AppContextProvider = ({children}) => {
   const [state, setState] = useState({
     previews: [],
-    userToken: null,
+    user: null,
     userLoading: null,
   });
 
@@ -17,11 +17,11 @@ const AppContextProvider = ({children}) => {
 
   const setStoredUserToken = async () => {
     setState((prevState) => ({...prevState, userLoading: true}));
-    const token = await UserToken.get();
+    const user = await User.get();
     setState((prevState) => ({...prevState, userLoading: false}));
 
-    if (token) {
-      setUserToken(token);
+    if (user) {
+      setUser(JSON.parse(user));
     }
   };
 
@@ -97,16 +97,16 @@ const AppContextProvider = ({children}) => {
     }));
   };
 
-  const setUserToken = (token) => {
-    UserToken.set(token);
+  const setUser = (user) => {
+    User.set(user);
     setState((prevState) => ({
       ...prevState,
-      userToken: token,
+      user: user,
     }));
   };
 
-  const resetUserToken = () => {
-    UserToken.remove();
+  const resetUser = () => {
+    User.remove();
     setState((prevState) => ({
       ...prevState,
       userToken: null,
@@ -121,8 +121,8 @@ const AppContextProvider = ({children}) => {
           setPreviews: handleSetPreviews,
           removePreview: handleRemovePreview,
           resetPreviews: handleResetPreviews,
-          setUserToken: setUserToken,
-          resetUserToken: resetUserToken,
+          setUser: setUser,
+          resetUser: resetUser,
         },
       }}>
       {children}
