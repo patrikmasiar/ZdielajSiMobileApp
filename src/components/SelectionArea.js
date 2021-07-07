@@ -1,12 +1,16 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Dimensions, View, Text} from 'react-native';
-import PropTypes from 'prop-types'
-import { Icon } from '@ui-kitten/components';
+import {StyleSheet, TouchableOpacity, Dimensions, Text} from 'react-native';
+import PropTypes from 'prop-types';
+import {Icon} from '@ui-kitten/components';
 import PreviewsList from './PreviewsList';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
-const SelectionArea: () => React$Node = ({onSelectPress, selectedImages, onRemovePress}) => {
+const SelectionArea: () => React$Node = ({
+  onSelectPress,
+  selectedImages,
+  onRemovePress,
+}) => {
   const hasImagesToUpload = selectedImages.length !== 0;
 
   return (
@@ -18,26 +22,18 @@ const SelectionArea: () => React$Node = ({onSelectPress, selectedImages, onRemov
           hasImagesToUpload && {marginBottom: 20},
         ]}
         activeOpacity={0.8}
-        onPress={onSelectPress}
-      >
-        <Icon
-          style={style.icon}
-          fill='#8F9BB3'
-          name='image'
-        />
+        onPress={onSelectPress}>
+        <Icon style={style.icon} fill="#8F9BB3" name="image" />
         <Text style={style.selectLabel}>
           {hasImagesToUpload ? 'Vybrať viac obrázkov' : 'Vyber obrázky'}
         </Text>
       </TouchableOpacity>
-      
+
       {hasImagesToUpload && (
-        <PreviewsList
-          data={selectedImages}
-          onRemovePress={onRemovePress}
-        />
+        <PreviewsList data={selectedImages} onRemovePress={onRemovePress} />
       )}
     </>
-  )  
+  );
 };
 
 const style = StyleSheet.create({
@@ -60,7 +56,6 @@ const style = StyleSheet.create({
     width: 40,
     height: 40,
   },
-
 });
 
 SelectionArea.propTypes = {

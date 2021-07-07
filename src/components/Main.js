@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import PickerContainer from '../containers/PickerContainer';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import UploadButton from './UploadButton';
 
 const Main: () => React$Node = ({
@@ -24,7 +24,7 @@ const style = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 10,
     flex: 1,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 });
 
@@ -37,6 +37,6 @@ Main.propTypes = {
 
 Main.defaultProps = {
   shareUrl: null,
-}
+};
 
 export default Main;
