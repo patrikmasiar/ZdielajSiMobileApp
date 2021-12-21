@@ -13,7 +13,7 @@ const PreviewsContainer = ({children}) => {
       const pickerResponse = await ImagePicker.openPicker({
         multiple: true,
         path: 'images',
-        mediaType: 'photo',
+        mediaType: 'any',
       });
 
       if (Array.isArray(pickerResponse)) {
