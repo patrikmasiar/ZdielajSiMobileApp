@@ -20,7 +20,7 @@ const PreviewsContainer = ({children}) => {
         setPreviews(pickerResponse);
       } else {
         Alert.alert(
-          'Nepodarilo sa nahrať súbory z knižnice',
+          'Nepodarilo sa nahrať médiá z knižnice',
           'Prosím, skúste znovu',
         );
       }
