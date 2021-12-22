@@ -24,7 +24,7 @@ const UploadContainer = ({children, navigation}) => {
         isUserSigned
       ) {
         Alert.alert(
-          'Nemožno nahrať viac ako 10 médií',
+          `Nemožno nahrať viac ako ${CONFIG.NOT_SIGNED_MEDIA_UPLOAD_LIMIT} médií`,
           'Vyžaduje sa prihlásenie',
         );
         return;
