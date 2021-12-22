@@ -6,8 +6,6 @@ import Video from 'react-native-video';
 
 const PreviewsToUploadItem = ({item, onRemovePress}) => {
   if (item.mime.includes('video')) {
-    console.log('som tu');
-
     return (
       <View style={style.item}>
         <View style={style.videoThumbWrapper}>
