@@ -3,13 +3,14 @@ import User from '../utils/User';
 
 const ProfileContainer = ({children, navigation}) => {
   const {
-    actions: {resetUser},
+    actions: {resetUser, resetPreviews},
     state: {user, userLoading},
   } = useAppContext();
 
   const handleLogout = () => {
     User.remove();
     resetUser();
+    resetPreviews();
   };
 
   return children({
