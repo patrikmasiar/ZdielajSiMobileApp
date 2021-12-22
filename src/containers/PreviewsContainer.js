@@ -1,10 +1,11 @@
 import {useAppContext} from '../contextStore';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Alert} from 'react-native';
+import {CONFIG} from '../env';
 
 const PreviewsContainer = ({children}) => {
   const {
-    state: {previews},
+    state: {previews, isUserSigned},
     actions: {setPreviews, removePreview},
   } = useAppContext();
 
@@ -13,7 +14,9 @@ const PreviewsContainer = ({children}) => {
       const pickerResponse = await ImagePicker.openPicker({
         multiple: true,
         path: 'images',
-        mediaType: 'any',
+        mediaType: isUserSigned
+          ? CONFIG.ALLOWED_MEDIA_TYPES_SIGNED
+          : CONFIG.ALLOWED_MEDIA_TYPES_NOT_SIGNED,
       });
 
       if (Array.isArray(pickerResponse)) {
