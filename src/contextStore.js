@@ -125,7 +125,7 @@ const AppContextProvider = ({children}) => {
       value={{
         state: {
           ...state,
-          isSigned: isUserSigned(),
+          isUserSigned,
         },
         actions: {
           setPreviews: handleSetPreviews,
