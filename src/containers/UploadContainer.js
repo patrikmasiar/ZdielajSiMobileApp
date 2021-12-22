@@ -2,12 +2,12 @@ import {useState} from 'react';
 import {useAppContext} from '../contextStore';
 import RNFetchBlob from 'rn-fetch-blob';
 import {Alert, Platform} from 'react-native';
-import {API_URL} from '../env';
+import {API_URL, CONFIG} from '../env';
 
 const UploadContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
   const {
-    state: {previews, user},
+    state: {previews, user, isUserSigned},
     actions: {resetPreviews},
   } = useAppContext();
 
@@ -18,9 +18,11 @@ const UploadContainer = ({children, navigation}) => {
       let headers = {
         'Content-Type': 'multipart/form-data',
       };
-      const userToken = user?.token ?? null;
 
-      if (previews.length > 10 && userToken === null) {
+      if (
+        previews.length > CONFIG.NOT_SIGNED_MEDIA_UPLOAD_LIMIT &&
+        isUserSigned
+      ) {
         Alert.alert(
           'Nemožno nahrať viac ako 10 médií',
           'Vyžaduje sa prihlásenie',
@@ -46,7 +48,7 @@ const UploadContainer = ({children, navigation}) => {
         });
       }
 
-      if (userToken) {
+      if (isUserSigned) {
         headers.Authorization = user.token;
       }
 

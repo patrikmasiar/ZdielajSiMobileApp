@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect} from 'react';
+import React, {createContext, useState, useEffect, useMemo} from 'react';
 import {Platform} from 'react-native';
 import User from './utils/User';
 
@@ -116,10 +116,17 @@ const AppContextProvider = ({children}) => {
     }));
   };
 
+  const isUserSigned = useMemo(() => {
+    !!state.user?.token;
+  }, [state.user]);
+
   return (
     <AppContext.Provider
       value={{
-        state,
+        state: {
+          ...state,
+          isSigned: isUserSigned(),
+        },
         actions: {
           setPreviews: handleSetPreviews,
           removePreview: handleRemovePreview,
