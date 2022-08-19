@@ -6,7 +6,6 @@ export const downloadImages = async (url: String) => {
     const albumId = url.match(regex)[0];
 
     const response = await fetch(`${API_URL}album/${albumId}`);
-
     const result = await response.json();
 
     if (result && result.error === null) {

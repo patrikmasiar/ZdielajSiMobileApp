@@ -16,9 +16,9 @@ const DownloadImages = ({children}) => {
       const data = await downloadFromAPI(urlValue);
 
       if (data) {
-        const images = data.photos;
+        const images = data.album.media;
         const formatted = images.map((image) => ({
-          thumbnail: image.thumbnail.location,
+          thumbnail: image.thumbnails[0].location,
           original: image.location,
         }));
 
@@ -45,7 +45,7 @@ const DownloadImages = ({children}) => {
       .fetch('GET', originalSrc)
       .then((response) => {
         CameraRoll.saveToCameraRoll(response.data, 'photo')
-          .then((res) => Alert.alert('Obrázok stiahnutý'))
+          .then(() => Alert.alert('Obrázok stiahnutý'))
           .catch((err) => {
             console.log(err);
             Alert.alert('Obrázok sa nepodarilo uložiť');
