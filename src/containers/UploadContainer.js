@@ -20,7 +20,6 @@ const UploadContainer = ({children, navigation}) => {
       });
       const albumResult = await albumResponse.json();
 
-      let dataArray = [];
       let headers = {
         'Content-Type': 'multipart/form-data',
       };
@@ -42,32 +41,28 @@ const UploadContainer = ({children, navigation}) => {
             ? image.path.substring(image.path.lastIndexOf('/') + 1)
             : image.filename;
 
-        dataArray.push({
-          name: 'image',
-          filename: fileNameByPlatform,
-          type: image.mime,
-          data: RNFetchBlob.wrap(
-            Platform.OS === 'android'
-              ? image.path
-              : image.path.replace('file://', ''),
-          ),
-        });
-      }
+        if (isUserSigned) {
+          headers.Authorization = user.token;
+        }
 
-      if (isUserSigned) {
-        headers.Authorization = user.token;
-      }
+        await RNFetchBlob.fetch(
+          'POST',
+          `${API_UPLOAD_URL}upload`,
+          {...headers},
+          [
+            {
+              name: 'image',
+              filename: fileNameByPlatform,
+              type: image.mime,
+              data: RNFetchBlob.wrap(
+                Platform.OS === 'android'
+                  ? image.path
+                  : image.path.replace('file://', ''),
+              ),
+            },
+          ],
+        );
 
-      const response = await RNFetchBlob.fetch(
-        'POST',
-        `${API_UPLOAD_URL}upload`,
-        {...headers},
-        dataArray,
-      );
-
-      const responseData = JSON.parse(response.data);
-
-      if (responseData.error === null && !!responseData.data) {
         navigation.navigate('share', {
           albumId: albumResult.data.album.id,
         });
