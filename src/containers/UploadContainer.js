@@ -20,7 +20,7 @@ const UploadContainer = ({children, navigation}) => {
       });
       const albumResult = await albumResponse.json();
 
-      let headers = {
+      const headers = {
         'content-type': 'multipart/form-data',
         authorization: albumResult.data.user.token,
       };
