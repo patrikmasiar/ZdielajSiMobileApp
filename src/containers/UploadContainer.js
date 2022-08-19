@@ -21,8 +21,8 @@ const UploadContainer = ({children, navigation}) => {
       const albumResult = await albumResponse.json();
 
       const headers = {
-        'content-type': 'multipart/form-data',
-        authorization: albumResult.data.user.token,
+        'Content-Type': 'multipart/form-data',
+        Authorization: albumResult.data.user.token,
       };
 
       if (
@@ -42,7 +42,7 @@ const UploadContainer = ({children, navigation}) => {
             ? image.path.substring(image.path.lastIndexOf('/') + 1)
             : image.filename;
 
-        await RNFetchBlob.fetch(
+        const uploadResponse = await RNFetchBlob.fetch(
           'POST',
           `${API_UPLOAD_URL}upload`,
           {...headers},
@@ -59,12 +59,24 @@ const UploadContainer = ({children, navigation}) => {
             },
           ],
         );
+        const uploadResponseData = JSON.parse(uploadResponse.data);
 
-        navigation.navigate('share', {
-          albumId: albumResult.data.album.id,
+        await fetch(`${API_URL}album/${albumResult.data.album.id}/media`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: albumResult.data.user.token,
+          },
+          body: JSON.stringify({
+            mediaId: uploadResponseData.data.media.id,
+          }),
         });
-        resetPreviews();
       }
+
+      navigation.navigate('share', {
+        albumId: albumResult.data.album.id,
+      });
+      resetPreviews();
     } catch (error) {
       console.log('Can not upload media', error);
     } finally {
