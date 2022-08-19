@@ -7,7 +7,7 @@ import {API_UPLOAD_URL, API_URL, CONFIG} from '../env';
 const UploadContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
   const {
-    state: {previews, user, isUserSigned},
+    state: {previews, isUserSigned},
     actions: {resetPreviews},
   } = useAppContext();
 
@@ -21,7 +21,8 @@ const UploadContainer = ({children, navigation}) => {
       const albumResult = await albumResponse.json();
 
       let headers = {
-        'Content-Type': 'multipart/form-data',
+        'content-type': 'multipart/form-data',
+        authorization: albumResult.data.user.token,
       };
 
       if (
@@ -40,10 +41,6 @@ const UploadContainer = ({children, navigation}) => {
           Platform.OS === 'android'
             ? image.path.substring(image.path.lastIndexOf('/') + 1)
             : image.filename;
-
-        if (isUserSigned) {
-          headers.Authorization = user.token;
-        }
 
         await RNFetchBlob.fetch(
           'POST',
