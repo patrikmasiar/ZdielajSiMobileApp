@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {useAppContext} from '../contextStore';
 import RNFetchBlob from 'rn-fetch-blob';
 import {Alert, Platform} from 'react-native';
-import {API_URL, CONFIG} from '../env';
+import {API_UPLOAD_URL, API_URL, CONFIG} from '../env';
 
 const UploadContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
@@ -14,6 +14,12 @@ const UploadContainer = ({children, navigation}) => {
   const handleUploadImages = async () => {
     try {
       setLoading(true);
+
+      const albumResponse = await fetch(`${API_URL}album`, {
+        method: 'POST',
+      });
+      const albumResult = await albumResponse.json();
+
       let dataArray = [];
       let headers = {
         'Content-Type': 'multipart/form-data',
@@ -37,7 +43,7 @@ const UploadContainer = ({children, navigation}) => {
             : image.filename;
 
         dataArray.push({
-          name: 'images',
+          name: 'image',
           filename: fileNameByPlatform,
           type: image.mime,
           data: RNFetchBlob.wrap(
@@ -54,7 +60,7 @@ const UploadContainer = ({children, navigation}) => {
 
       const response = await RNFetchBlob.fetch(
         'POST',
-        `${API_URL}upload`,
+        `${API_UPLOAD_URL}upload`,
         {...headers},
         dataArray,
       );
@@ -63,7 +69,7 @@ const UploadContainer = ({children, navigation}) => {
 
       if (responseData.error === null && !!responseData.data) {
         navigation.navigate('share', {
-          albumId: responseData.data.album.id,
+          albumId: albumResult.data.album.id,
         });
         resetPreviews();
       }
