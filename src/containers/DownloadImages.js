@@ -2,8 +2,10 @@ import {useState} from 'react';
 import CameraRoll from '@react-native-community/cameraroll';
 import RNFetchBlob from 'rn-fetch-blob';
 import {Platform, Alert} from 'react-native';
-import {downloadImages as downloadFromAPI} from '../api/Download';
 import getPermissionAndroid from '../utils/getAndroidPermissions';
+import ApiRequests from '../api/apiRequests';
+
+const ALBUM_ID_URL_REGEX = /([a-z\d]+)(\/*|)$/i;
 
 const DownloadImages = ({children}) => {
   const [isLoading, setLoading] = useState(false);
@@ -13,10 +15,11 @@ const DownloadImages = ({children}) => {
   const downloadImages = async () => {
     try {
       setLoading(true);
-      const data = await downloadFromAPI(urlValue);
+      const albumId = urlValue.match(ALBUM_ID_URL_REGEX)[0];
+      const data = await ApiRequests.getAlbumData(albumId);
 
-      if (data) {
-        const images = data.album.media;
+      if (data.data) {
+        const images = data.data.album.media;
         const formatted = images.map((image) => ({
           thumbnail: image.thumbnails[0].location,
           original: image.location,
