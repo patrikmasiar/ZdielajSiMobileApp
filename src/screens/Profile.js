@@ -1,26 +1,51 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Alert} from 'react-native';
 import ProfileContainer from '../containers/ProfileContainer';
 import {Button} from '@ui-kitten/components';
+import ApiRequests from '../api/apiRequests';
 
 const Profile = ({navigation}) => {
   return (
     <ProfileContainer navigation={navigation}>
-      {(params) => (
-        <View style={style.wrapper}>
-          <View style={style.head}>
-            <Text style={style.title} numberOfLines={2}>
-              Vitaj {params?.user?.name ?? ''}
-            </Text>
-            <Button
-              status="danger"
-              appearance="outline"
-              onPress={params.logout}>
-              Odhlásiť sa
-            </Button>
+      {(params) => {
+        const handleDeleteAccount = async () => {
+          const response = await ApiRequests.deleteAccount();
+
+          if (response) {
+            Alert.alert(
+              'Žiadosť zaznamenaná',
+              'Účet bude vymazaný do 48 hodín.',
+            );
+            params.logout();
+          }
+        };
+
+        return (
+          <View style={style.wrapper}>
+            <View style={style.head}>
+              <Text style={style.title} numberOfLines={2}>
+                Vitaj {params?.user?.name ?? ''}
+              </Text>
+            </View>
+            <View>
+              <Button
+                status="warning"
+                appearance="outline"
+                style={style.logoutBtn}
+                onPress={params.logout}>
+                Odhlásiť sa
+              </Button>
+              <Button
+                status="danger"
+                appearance="outline"
+                size="small"
+                onPress={handleDeleteAccount}>
+                Vymazať účet
+              </Button>
+            </View>
           </View>
-        </View>
-      )}
+        );
+      }}
     </ProfileContainer>
   );
 };
@@ -31,14 +56,12 @@ const style = StyleSheet.create({
     flex: 1,
     position: 'relative',
     padding: 20,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+    flexDirection: 'column',
     justifyContent: 'space-between',
   },
   head: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1,
     justifyContent: 'space-between',
   },
   title: {
@@ -46,6 +69,9 @@ const style = StyleSheet.create({
     color: '#3255AF',
     fontSize: 30,
     flex: 1,
+  },
+  logoutBtn: {
+    marginBottom: 12,
   },
 });
 
