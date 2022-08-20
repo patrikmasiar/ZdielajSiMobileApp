@@ -11,6 +11,9 @@ const ApiRequests = {
       data: credentials,
     });
   },
+  createAlbum: () => {
+    return post('album');
+  },
   getAlbumData: (id) => {
     return get(`album/${id}`);
   },

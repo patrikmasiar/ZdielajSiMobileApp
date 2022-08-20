@@ -3,6 +3,7 @@ import {useAppContext} from '../contextStore';
 import RNFetchBlob from 'rn-fetch-blob';
 import {Alert, Platform} from 'react-native';
 import {API_UPLOAD_URL, API_URL, CONFIG} from '../env';
+import ApiRequests from '../api/apiRequests';
 
 const UploadContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
@@ -15,14 +16,11 @@ const UploadContainer = ({children, navigation}) => {
     try {
       setLoading(true);
 
-      const albumResponse = await fetch(`${API_URL}album`, {
-        method: 'POST',
-      });
-      const albumResult = await albumResponse.json();
+      const albumResponse = await ApiRequests.createAlbum();
 
       const headers = {
         'Content-Type': 'multipart/form-data',
-        Authorization: albumResult.data.user.token,
+        Authorization: albumResponse.data.user.token,
       };
 
       if (
@@ -61,11 +59,11 @@ const UploadContainer = ({children, navigation}) => {
         );
         const uploadResponseData = JSON.parse(uploadResponse.data);
 
-        await fetch(`${API_URL}album/${albumResult.data.album.id}/media`, {
+        await fetch(`${API_URL}album/${albumResponse.data.album.id}/media`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: albumResult.data.user.token,
+            Authorization: albumResponse.data.user.token,
           },
           body: JSON.stringify({
             mediaId: uploadResponseData.data.media.id,
@@ -74,7 +72,7 @@ const UploadContainer = ({children, navigation}) => {
       }
 
       navigation.navigate('share', {
-        albumId: albumResult.data.album.id,
+        albumId: albumResponse.data.album.id,
       });
       resetPreviews();
     } catch (error) {
