@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {register} from '../api/User';
+import ApiRequests from '../api/apiRequests';
 
 const RegisterContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
@@ -7,7 +7,7 @@ const RegisterContainer = ({children, navigation}) => {
   const handleRegister = async (name, email, password) => {
     try {
       setLoading(true);
-      const response = await register(name, email, password);
+      const response = await ApiRequests.register({name, email, password});
 
       if (response && !!response.data.user.id) {
         navigation.navigate('login');
