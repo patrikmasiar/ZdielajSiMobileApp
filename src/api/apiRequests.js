@@ -11,6 +11,13 @@ const ApiRequests = {
       data: credentials,
     });
   },
+  deleteAccount: () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, 500);
+    });
+  },
   createAlbum: () => {
     return post('album');
   },
