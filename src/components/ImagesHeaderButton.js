@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Icon} from '@ui-kitten/components';
+import Routes from '../router/routes';
 
 const ImagesHeaderButton = ({navigation}) => {
   return (
     <TouchableOpacity
       style={style.button}
-      onPress={() => navigation.navigate('download')}>
+      onPress={() => navigation.navigate(Routes.DOWNLOAD)}>
       <Icon fill="#3255AF" name="image" style={style.icon} />
     </TouchableOpacity>
   );

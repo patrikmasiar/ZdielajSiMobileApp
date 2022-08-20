@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import ApiRequests from '../api/apiRequests';
+import Routes from '../router/routes';
 
 const RegisterContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
@@ -10,7 +11,7 @@ const RegisterContainer = ({children, navigation}) => {
       const response = await ApiRequests.register({name, email, password});
 
       if (response && !!response.data.user.id) {
-        navigation.navigate('login');
+        navigation.navigate(Routes.LOGIN);
       }
     } catch (e) {
       console.log('Error register user:', e);

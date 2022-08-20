@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useAppContext} from '../contextStore';
 import ApiRequests from '../api/apiRequests';
+import Routes from '../router/routes';
 
 const LoginContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
@@ -9,7 +10,7 @@ const LoginContainer = ({children, navigation}) => {
   } = useAppContext();
 
   const handleGoToRegister = () => {
-    navigation.navigate('registration');
+    navigation.navigate(Routes.REGISTRATION);
   };
 
   const handleLogin = async (email, password) => {
