@@ -24,6 +24,16 @@ const ApiRequests = {
   getAlbumData: (id) => {
     return get(`album/${id}`);
   },
+  addMediaToAlbum: (data, authToken) => {
+    return post(`album/${data.albumId}/media`, {
+      headers: {
+        Authorization: authToken,
+      },
+      data: {
+        mediaId: data.mediaId,
+      },
+    });
+  },
 };
 
 export default ApiRequests;
