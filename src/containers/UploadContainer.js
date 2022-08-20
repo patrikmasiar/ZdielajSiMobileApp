@@ -4,6 +4,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import {Alert, Platform} from 'react-native';
 import {API_UPLOAD_URL, CONFIG} from '../env';
 import ApiRequests from '../api/apiRequests';
+import Routes from '../router/routes';
 
 const UploadContainer = ({children, navigation}) => {
   const [isLoading, setLoading] = useState(false);
@@ -68,7 +69,7 @@ const UploadContainer = ({children, navigation}) => {
         );
       }
 
-      navigation.navigate('share', {
+      navigation.navigate(Routes.SHARE, {
         albumId: albumResponse.data.album.id,
       });
       resetPreviews();

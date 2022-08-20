@@ -7,6 +7,7 @@ import UploadHeaderButton from '../components/UploadHeaderButton';
 import ImagesHeaderButton from '../components/ImagesHeaderButton';
 import {Icon} from '@ui-kitten/components';
 import {useAppContext} from '../contextStore';
+import Routes from './routes';
 
 const Share = lazy(() => import('../screens/Share'));
 const Images = lazy(() => import('../screens/ImagesList'));
@@ -24,7 +25,7 @@ const ShareRouter = () => {
       <Suspense fallback={<ActivityIndicator />}>
         <Stack.Navigator>
           <Stack.Screen
-            name="upload"
+            name={Routes.UPLOAD}
             component={Images}
             options={({navigation, route}) => ({
               title: <Text style={style.title}>Zdieľaj.si</Text>,
@@ -37,7 +38,7 @@ const ShareRouter = () => {
             })}
           />
           <Stack.Screen
-            name="share"
+            name={Routes.SHARE}
             component={Share}
             options={{
               title: <Text style={style.title}>Zdieľaj.si</Text>,
@@ -49,7 +50,7 @@ const ShareRouter = () => {
             }}
           />
           <Stack.Screen
-            name="download"
+            name={Routes.DOWNLOAD}
             component={DownloadImages}
             options={{
               title: <Text style={style.title}>Sťahuj.si</Text>,
@@ -78,7 +79,7 @@ const UserRouter = () => {
         <Suspense fallback={<ActivityIndicator />}>
           <Stack.Navigator>
             <Stack.Screen
-              name="profile"
+              name={Routes.PROFILE}
               component={Profile}
               options={({navigation, route}) => ({
                 title: <Text style={style.title}>Profil</Text>,
@@ -99,7 +100,7 @@ const UserRouter = () => {
       <Suspense fallback={<ActivityIndicator />}>
         <Stack.Navigator>
           <Stack.Screen
-            name="login"
+            name={Routes.LOGIN}
             component={Login}
             options={({navigation, route}) => ({
               title: <Text style={style.title}>Prihlás.sa</Text>,
@@ -110,7 +111,7 @@ const UserRouter = () => {
             })}
           />
           <Stack.Screen
-            name="registration"
+            name={Routes.REGISTRATION}
             component={Register}
             options={({navigation, route}) => ({
               title: <Text style={style.title}>Registruj.sa</Text>,
@@ -135,10 +136,10 @@ const Router = () => {
           let iconName;
 
           switch (route.name) {
-            case 'Share':
+            case Routes.TABS.SHARE:
               iconName = 'share';
               break;
-            case 'Profile':
+            case Routes.TABS.PROFILE:
               iconName = 'person-outline';
               break;
           }
@@ -157,8 +158,8 @@ const Router = () => {
         inactiveTintColor: 'gray',
         showLabel: false,
       }}>
-      <Tab.Screen name="Share" component={ShareRouter} />
-      <Tab.Screen name="Profile" component={UserRouter} />
+      <Tab.Screen name={Routes.TABS.SHARE} component={ShareRouter} />
+      <Tab.Screen name={Routes.TABS.PROFILE} component={UserRouter} />
     </Tab.Navigator>
   );
 };
