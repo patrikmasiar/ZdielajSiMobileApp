@@ -175,6 +175,9 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    // Issue workaround:
+    // No toolchains found in the NDK toolchains folder for ABI with prefix: arm-linux-androideabi
+    ndkVersion '22.1.7171670'
 
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
