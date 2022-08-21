@@ -1,7 +1,9 @@
 import React from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, Linking} from 'react-native';
 import LoginForm from '../components/LoginForm';
 import LoginContainer from '../containers/Login';
+import {Button} from '@ui-kitten/components';
+import {BASE_URL} from '../env';
 
 const Login = ({navigation}) => {
   return (
@@ -15,6 +17,12 @@ const Login = ({navigation}) => {
           />
         )}
       </LoginContainer>
+      <Button
+        appearance="ghost"
+        size="small"
+        onPress={() => Linking.openURL(`${BASE_URL}o-aplikacii`)}>
+        Podmienky používania
+      </Button>
     </ScrollView>
   );
 };
