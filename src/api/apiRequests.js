@@ -1,4 +1,4 @@
-import {post, get} from './client';
+import {post, get, requestDetele} from './client';
 
 const ApiRequests = {
   login: (credentials) => {
@@ -11,11 +11,11 @@ const ApiRequests = {
       data: credentials,
     });
   },
-  deleteAccount: () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 500);
+  deleteAccount: (authToken) => {
+    return requestDetele('user', {
+      headers: {
+        Authorization: authToken,
+      },
     });
   },
   createAlbum: () => {
