@@ -11,10 +11,10 @@ const Profile = ({navigation}) => {
         const handleDeleteAccount = async () => {
           const response = await ApiRequests.deleteAccount(params?.user?.token);
 
-          if (response) {
+          if (response.data.user.id) {
             Alert.alert(
-              'Žiadosť zaznamenaná',
-              'Účet bude vymazaný do 48 hodín.',
+              'Žiadosť prijatá',
+              'Účet bol úspešne vymazaný.',
             );
             params.logout();
           }
