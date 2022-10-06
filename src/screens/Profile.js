@@ -9,7 +9,7 @@ const Profile = ({navigation}) => {
     <ProfileContainer navigation={navigation}>
       {(params) => {
         const handleDeleteAccount = async () => {
-          const response = await ApiRequests.deleteAccount();
+          const response = await ApiRequests.deleteAccount(params?.user?.token);
 
           if (response) {
             Alert.alert(
