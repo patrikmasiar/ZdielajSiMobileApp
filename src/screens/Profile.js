@@ -12,10 +12,7 @@ const Profile = ({navigation}) => {
           const response = await ApiRequests.deleteAccount(params?.user?.token);
 
           if (response.data.user.id) {
-            Alert.alert(
-              'Žiadosť prijatá',
-              'Účet bol úspešne vymazaný.',
-            );
+            Alert.alert('Žiadosť prijatá', 'Účet bol úspešne vymazaný.');
             params.logout();
           }
         };
