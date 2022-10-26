@@ -6,13 +6,13 @@ export async function get(url, options) {
 
 export async function requestDetele(url, options) {
   return fetch(`${API_URL}${url}`, {
-    method: 'POST',
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       ...options?.headers,
     },
     body: options?.data ? JSON.stringify(options.data) : undefined,
-  }).then(res => res.json());
+  }).then((res) => res.json());
 }
 
 export async function post(url, options) {
