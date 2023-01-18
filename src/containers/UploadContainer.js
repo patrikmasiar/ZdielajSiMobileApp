@@ -43,7 +43,7 @@ const UploadContainer = ({children, navigation}) => {
 
         const uploadResponse = await RNFetchBlob.fetch(
           'POST',
-          `${API_UPLOAD_URL}upload`,
+          `${API_UPLOAD_URL}upload/files`,
           {...headers},
           [
             {
@@ -63,7 +63,7 @@ const UploadContainer = ({children, navigation}) => {
         await ApiRequests.addMediaToAlbum(
           {
             albumId: albumResponse.data.album.id,
-            mediaId: uploadResponseData.data.media.id,
+            mediaId: uploadResponseData.data.file.id,
           },
           albumResponse.data.user.token,
         );
