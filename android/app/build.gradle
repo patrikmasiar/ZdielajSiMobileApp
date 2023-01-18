@@ -134,8 +134,8 @@ android {
         applicationId "si.zdielaj"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 20
-        versionName "5.0.1"
+        versionCode 21
+        versionName "5.0.2"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
