@@ -43,11 +43,11 @@ const UploadContainer = ({children, navigation}) => {
 
         const uploadResponse = await RNFetchBlob.fetch(
           'POST',
-          `${API_UPLOAD_URL}upload/files`,
+          `${API_UPLOAD_URL}upload/file`,
           {...headers},
           [
             {
-              name: 'image',
+              name: 'file',
               filename: fileNameByPlatform,
               type: image.mime,
               data: RNFetchBlob.wrap(
@@ -58,6 +58,7 @@ const UploadContainer = ({children, navigation}) => {
             },
           ],
         );
+
         const uploadResponseData = JSON.parse(uploadResponse.data);
 
         await ApiRequests.addMediaToAlbum(
@@ -70,7 +71,7 @@ const UploadContainer = ({children, navigation}) => {
       }
 
       navigation.navigate(Routes.SHARE, {
-        albumId: albumResponse.data.album.id,
+        albumId: albumResponse.data.album.hash,
       });
       resetPreviews();
     } catch (error) {
