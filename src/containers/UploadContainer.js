@@ -64,7 +64,7 @@ const UploadContainer = ({children, navigation}) => {
         await ApiRequests.addMediaToAlbum(
           {
             albumId: albumResponse.data.album.id,
-            mediaId: uploadResponseData.data.file.id,
+            fileId: uploadResponseData.data.file.id,
           },
           albumResponse.data.user.token,
         );

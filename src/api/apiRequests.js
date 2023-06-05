@@ -30,7 +30,7 @@ const ApiRequests = {
         Authorization: authToken,
       },
       data: {
-        mediaId: data.mediaId,
+        fileId: data.fileId,
       },
     });
   },
