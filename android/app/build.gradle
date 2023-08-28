@@ -140,8 +140,8 @@ android {
         applicationId "si.zdielaj"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 22
-        versionName "5.0.2"
+        versionCode 24
+        versionName "5.1.1"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
@@ -197,6 +197,15 @@ android {
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
 
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.facebook.react' && requested.name == 'react-native-camera-roll') {
+                details.useVersion 'x.x.x' // replace with your desired version
+            }
         }
     }
 }
